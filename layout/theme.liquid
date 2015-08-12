@@ -168,7 +168,8 @@
                   <img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }}" itemprop="logo">
                 </a>
               {% else %}
-                <a href="/" itemprop="url">{{ shop.name }} BRO</a>
+               <!--  <a href="/" itemprop="url">{{ shop.name }}</a> -->
+               <a href="/" itemprop="url"><img src="https://cdn.shopify.com/s/files/1/0941/6882/files/logo.svg?848373664339215298"></a>
               {% endif %}
             {% if template == 'index' %}
               </h1>
@@ -295,7 +296,8 @@
       </div>
     </nav>
 
-    <main class="wrapper main-content" role="main">
+   {% comment %} <main class="wrapper main-content" role="main">{% endcomment %}
+    <main class="main-content" role="main">
 
       {{ content_for_layout }}
 
@@ -370,7 +372,6 @@
                 {% endfor %}
               </ul>
             {% endunless %}
-            <a href="http://shopify.com/timber">Timber Theme Framework</a> by <a href="http://www.shopify.com?ref=Timber" title="Shopify.com">Shopify</a><br>
             <small>{{ powered_by_link }}</small>
           </div>
         </div>
@@ -381,6 +382,9 @@
 
   {{ 'fastclick.min.js' | asset_url | script_tag }}
   {{ 'timber.js' | asset_url | script_tag }}
+
+  {{ 'videobg.js' | asset_url | script_tag }}
+  {{ 'scripts.js' | asset_url | script_tag }}
 
   {% comment %}
     Template-specific js

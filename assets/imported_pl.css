@@ -324,13 +324,35 @@ picture {
   max-width: 100%;
 }
 
+@media screen and (max-width: 979px) {
+  /* line 16, ../sass/_partials/_variables.scss */
+  .desktop {
+    display: block !important;
+  }
+
+  /* line 19, ../sass/_partials/_variables.scss */
+  .mobile {
+    display: none !important;
+  }
+}
+@media screen and (max-width: 980px) {
+  /* line 24, ../sass/_partials/_variables.scss */
+  .desktop {
+    display: none !important;
+  }
+
+  /* line 27, ../sass/_partials/_variables.scss */
+  .mobile {
+    display: block !important;
+  }
+}
 /* line 1, ../sass/_partials/_sticky_header.scss */
 .header {
-  position: fixed;
+  display: none;
+  position: relative;
   top: 0;
   left: 0;
   width: 100%;
-  height: 109px;
   background: rgba(0, 0, 0, 0.75);
   color: #fff;
   z-index: 1000;
@@ -350,44 +372,71 @@ picture {
   }
 }
 
-/* line 28, ../sass/_partials/_sticky_header.scss */
+/* line 23, ../sass/_partials/_sticky_header.scss */
+.fixed {
+  position: fixed !important;
+  transition: top 1.5s ease;
+  top: 0;
+  display: none;
+}
+
+/* line 29, ../sass/_partials/_sticky_header.scss */
+.fixed_header {
+  position: fixed !important;
+  transition: top 1.5s ease;
+  top: 0;
+}
+
+/* line 35, ../sass/_partials/_sticky_header.scss */
+.fixed_content {
+  position: fixed !important;
+  transition: top 0.5s ease;
+  top: 0;
+}
+
+/* line 40, ../sass/_partials/_sticky_header.scss */
 .header {
   font-size: 30px;
   font-weight: normal;
-  padding-top: 1%;
-  padding-bottom: 1%;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
-/* line 33, ../sass/_partials/_sticky_header.scss */
+/* line 45, ../sass/_partials/_sticky_header.scss */
 .header img {
   width: 20%;
   max-width: 300px;
   height: auto;
+  display: block;
+  margin: 0 auto;
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
   transition: all 0.3s;
 }
-@media screen and (max-width: 1000px) {
-  /* line 33, ../sass/_partials/_sticky_header.scss */
+@media screen and (max-width: 980px) {
+  /* line 45, ../sass/_partials/_sticky_header.scss */
   .header img {
     width: 30%;
     margin-left: 1.0em;
     padding-top: 0;
+    float: left;
   }
 }
 @media screen and (max-width: 767px) {
-  /* line 33, ../sass/_partials/_sticky_header.scss */
+  /* line 45, ../sass/_partials/_sticky_header.scss */
   .header img {
     padding-top: 2%;
   }
 }
 @media screen and (max-width: 569px) {
-  /* line 33, ../sass/_partials/_sticky_header.scss */
+  /* line 45, ../sass/_partials/_sticky_header.scss */
   .header img {
     margin-left: 0em;
+    float: none;
+    margin: 0 auto;
   }
 }
 
-/* line 71, ../sass/_partials/_sticky_header.scss */
+/* line 74, ../sass/_partials/_sticky_header.scss */
 a.signup {
   z-index: 9999;
   position: absolute;
@@ -395,7 +444,6 @@ a.signup {
   text-align: center;
   color: #000;
   text-decoration: none;
-  z-index: 5;
   right: 5%;
   line-height: 30px;
   text-transform: uppercase;
@@ -406,19 +454,19 @@ a.signup {
   padding: 0em 1.0em;
   margin-top: 2%;
 }
-/* line 88, ../sass/_partials/_sticky_header.scss */
+/* line 91, ../sass/_partials/_sticky_header.scss */
 a.signup:hover {
   background-color: rgba(255, 255, 255, 0.5);
 }
-@media screen and (max-width: 1000px) {
-  /* line 71, ../sass/_partials/_sticky_header.scss */
+@media screen and (max-width: 980px) {
+  /* line 74, ../sass/_partials/_sticky_header.scss */
   a.signup {
     margin-top: 2%;
     font-size: 0.4em;
   }
 }
 @media screen and (max-width: 569px) {
-  /* line 71, ../sass/_partials/_sticky_header.scss */
+  /* line 74, ../sass/_partials/_sticky_header.scss */
   a.signup {
     position: relative;
     width: 100%;
@@ -430,221 +478,12 @@ a.signup:hover {
   }
 }
 
-/* line 21, ../sass/_partials/_video.scss */
-#video {
-  position: relative;
-  top: 0;
-  left: 0;
-  z-index: 4;
-  width: 100%;
-  height: auto;
-  margin-top: 109px;
-  max-width: 2400px;
-  max-height: 920px;
-}
-
-/* line 36, ../sass/_partials/_video.scss */
-.header-video {
-  position: relative;
-  max-width: 2400px;
-  margin: 0 auto;
-}
-
-/* line 47, ../sass/_partials/_video.scss */
-iframe, video {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding-top: 2%;
-}
-
-/* line 56, ../sass/_partials/_video.scss */
-iframe {
-  height: 100%;
-  width: 100%;
-}
-
-/* line 61, ../sass/_partials/_video.scss */
-video {
-  width: 100%;
-}
-
-/* line 65, ../sass/_partials/_video.scss */
-.teaser-video {
-  width: 100%;
-  height: auto;
-}
-
-/* line 70, ../sass/_partials/_video.scss */
-.header-video--media {
-  width: 100%;
-  height: auto;
-  max-width: 20000px;
-  text-align: center;
-  margin: 0 auto;
-  display: block;
-}
-/* line 77, ../sass/_partials/_video.scss */
-.header-video--media img {
-  width: 100%;
-  height: auto;
-}
-
-/* line 83, ../sass/_partials/_video.scss */
-.video-trigger {
-  z-index: 9999;
-  position: absolute;
-  background: rgba(0, 0, 0, 0.6);
-  text-align: center;
-  color: white;
-  text-decoration: none;
-  width: 200px;
-  height: 60px;
-  top: 0;
-  z-index: 5;
-  left: 50%;
-  line-height: 60px;
-  margin-left: -100px;
-  top: 45%;
-  margin-top: -30px;
-  -webkit-transition: background .3s;
-  -moz-transition: background .3s;
-  transition: background .3s;
-  -webkit-border-radius: 8px;
-  -moz-border-radius: 8px;
-  border-radius: 8px;
-}
-
-/* line 107, ../sass/_partials/_video.scss */
-.video-trigger:hover {
-  background: #363636;
-  color: #FFF200;
-}
-
-/* line 112, ../sass/_partials/_video.scss */
-.container {
-  margin: 0 auto;
-  max-width: 1200px;
-  padding: 2em;
-}
-
 /* -------------------------------- 
 
 Modules - reusable parts of our design
 
 -------------------------------- */
-/* line 8, ../sass/_partials/_scroll_to_top.scss */
-.cd-container {
-  width: 100%;
-}
 
-/* line 11, ../sass/_partials/_scroll_to_top.scss */
-.cd-container::after {
-  /* clearfix */
-  content: '';
-  display: table;
-  clear: both;
-}
-
-/* line 17, ../sass/_partials/_scroll_to_top.scss */
-.cd-top {
-  display: block;
-  position: fixed;
-  bottom: 40px;
-  right: 10px;
-  z-index: 6666;
-  text-align: center;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-  /* image replacement properties */
-  visibility: hidden;
-  opacity: 0;
-  -webkit-transition: opacity .3s 0s, visibility 0s .3s;
-  -moz-transition: opacity .3s 0s, visibility 0s .3s;
-  transition: opacity .3s 0s, visibility 0s .3s;
-}
-
-/* line 33, ../sass/_partials/_scroll_to_top.scss */
-.cd-top.cd-is-visible, .cd-top.cd-fade-out, .no-touch .cd-top:hover {
-  -webkit-transition: opacity .3s 0s, visibility 0s 0s;
-  -moz-transition: opacity .3s 0s, visibility 0s 0s;
-  transition: opacity .3s 0s, visibility 0s 0s;
-}
-
-/* line 38, ../sass/_partials/_scroll_to_top.scss */
-.cd-top.cd-is-visible {
-  /* the button becomes visible */
-  visibility: visible;
-  opacity: 1;
-}
-
-/* line 43, ../sass/_partials/_scroll_to_top.scss */
-.cd-top.cd-fade-out {
-  /* if the user keeps scrolling down, the button is out of focus and becomes less visible */
-  opacity: .5;
-}
-
-/* line 47, ../sass/_partials/_scroll_to_top.scss */
-.no-touch .cd-top:hover {
-  background-color: rgba(0, 0, 0, 0.5);
-  opacity: 1;
-}
-
-@media only screen and (min-width: 768px) {
-  /* line 52, ../sass/_partials/_scroll_to_top.scss */
-  .cd-top {
-    right: 20px;
-    bottom: 20px;
-  }
-}
-@media only screen and (min-width: 1024px) {
-  /* line 58, ../sass/_partials/_scroll_to_top.scss */
-  .cd-top {
-    height: 60px;
-    width: 60px;
-    right: 30px;
-    bottom: 30px;
-    z-index: 6666;
-  }
-}
-@font-face {
-  font-family: 'icomoon';
-  src: url("../fonts/icomoon.eot?j18vpw");
-  src: url("../fonts/icomoon.eot?#iefixj18vpw") format("embedded-opentype"), url("../fonts/icomoon.ttf?j18vpw") format("truetype"), url("../fonts/icomoon.woff?j18vpw") format("woff"), url("../fonts/icomoon.svg?j18vpw#icomoon") format("svg");
-  font-weight: normal;
-  font-style: normal;
-}
-/* line 12, ../sass/_partials/_fonts.scss */
-[class^="icon-"], [class*=" icon-"] {
-  font-family: 'icomoon';
-  speak: none;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  font-size: 1.75em;
-  /* Better Font Rendering =========== */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* line 28, ../sass/_partials/_fonts.scss */
-.icon-menu:before {
-  content: "\e9bd";
-  color: rgba(51, 51, 51, 0.7);
-}
-
-/* line 33, ../sass/_partials/_fonts.scss */
-.icon-circle-up:before {
-  content: "\ea41";
-  color: rgba(51, 51, 51, 0.7);
-  display: block;
-  position: absolute;
-  top: 25%;
-  right: 25%;
-}
 
 /* line 1, ../sass/_partials/_footer.scss */
 #footer-block {
@@ -803,41 +642,52 @@ Modules - reusable parts of our design
 .content-stripe h1 {
   font-family: "proxima-nova", sans-serif;
   font-size: 2.0em;
-  text-transform: capitalize;
+  text-transform: uppercase;
   margin: 0 0 0.3em;
   font-weight: bold;
+  color: #4a4a4a;
+  position: relative;
+}
+/* line 29, ../sass/_partials/_copy-block.scss */
+.content-stripe h1:after {
+  content: url(https://cdn.shopify.com/s/files/1/0941/6882/files/sm_STACKED_Icon.svg?1849780542212893891);
+  display: inline-block;
+  width: 22px;
+  height: 25px;
+  position: absolute;
+  top: 0;
 }
 
-/* line 32, ../sass/_partials/_copy-block.scss */
+/* line 42, ../sass/_partials/_copy-block.scss */
 .content-block_left {
   display: block;
   width: 50%;
   float: left;
-  color: #000;
+  color: #373737;
   padding: 15% 1.5em 1.5em 10.0em;
 }
-@media screen and (max-width: 1000px) {
-  /* line 32, ../sass/_partials/_copy-block.scss */
+@media screen and (max-width: 980px) {
+  /* line 42, ../sass/_partials/_copy-block.scss */
   .content-block_left {
     width: 100%;
     padding: 5% 1.5em 1.5em 3.0em;
   }
 }
 @media screen and (max-width: 468px) {
-  /* line 32, ../sass/_partials/_copy-block.scss */
+  /* line 42, ../sass/_partials/_copy-block.scss */
   .content-block_left {
     padding: 5% 1.5em 1.5em 1.5em;
   }
 }
 
-/* line 48, ../sass/_partials/_copy-block.scss */
+/* line 58, ../sass/_partials/_copy-block.scss */
 .img-block_half_right {
   width: 50%;
   height: auto;
   float: right;
 }
-@media screen and (max-width: 1000px) {
-  /* line 48, ../sass/_partials/_copy-block.scss */
+@media screen and (max-width: 980px) {
+  /* line 58, ../sass/_partials/_copy-block.scss */
   .img-block_half_right {
     width: 100%;
     height: auto;
@@ -847,14 +697,14 @@ Modules - reusable parts of our design
   }
 }
 
-/* line 60, ../sass/_partials/_copy-block.scss */
+/* line 70, ../sass/_partials/_copy-block.scss */
 .img-block_half_left {
   width: 50%;
   height: auto;
   float: left;
 }
-@media screen and (max-width: 1000px) {
-  /* line 60, ../sass/_partials/_copy-block.scss */
+@media screen and (max-width: 980px) {
+  /* line 70, ../sass/_partials/_copy-block.scss */
   .img-block_half_left {
     width: 100%;
     height: auto;
@@ -863,29 +713,29 @@ Modules - reusable parts of our design
   }
 }
 
-/* line 74, ../sass/_partials/_copy-block.scss */
+/* line 84, ../sass/_partials/_copy-block.scss */
 .content-block_right {
   display: block;
   width: 50%;
   float: right;
-  color: #000;
-  padding: 15% 10.0em 1.5em 1.5em;
+  color: #373737;
+  padding: 15% 9.0em 1.5em 1.5em;
 }
-@media screen and (max-width: 1000px) {
-  /* line 74, ../sass/_partials/_copy-block.scss */
+@media screen and (max-width: 980px) {
+  /* line 84, ../sass/_partials/_copy-block.scss */
   .content-block_right {
     width: 100%;
     padding: 5% 1.5em 1.5em 3.0em;
   }
 }
 @media screen and (max-width: 468px) {
-  /* line 74, ../sass/_partials/_copy-block.scss */
+  /* line 84, ../sass/_partials/_copy-block.scss */
   .content-block_right {
     padding: 5% 1.5em 1.5em 1.5em;
   }
 }
 
-/* line 88, ../sass/_partials/_copy-block.scss */
+/* line 98, ../sass/_partials/_copy-block.scss */
 .content-block_right_sm {
   display: block;
   float: right;
@@ -894,13 +744,13 @@ Modules - reusable parts of our design
   width: 30%;
 }
 
-/* line 96, ../sass/_partials/_copy-block.scss */
+/* line 106, ../sass/_partials/_copy-block.scss */
 .img-block_right {
   text-align: right;
   float: right;
   width: 50%;
 }
-/* line 100, ../sass/_partials/_copy-block.scss */
+/* line 110, ../sass/_partials/_copy-block.scss */
 .img-block_right img {
   height: auto;
   width: 100%;
@@ -908,20 +758,20 @@ Modules - reusable parts of our design
   max-width: 600px;
   float: right;
 }
-@media screen and (max-width: 1000px) {
-  /* line 96, ../sass/_partials/_copy-block.scss */
+@media screen and (max-width: 980px) {
+  /* line 106, ../sass/_partials/_copy-block.scss */
   .img-block_right {
     width: 100%;
   }
 }
 
-/* line 111, ../sass/_partials/_copy-block.scss */
+/* line 121, ../sass/_partials/_copy-block.scss */
 .img-block_left {
   text-align: left;
   float: left;
   width: 50%;
 }
-/* line 115, ../sass/_partials/_copy-block.scss */
+/* line 125, ../sass/_partials/_copy-block.scss */
 .img-block_left img {
   height: auto;
   width: 100%;
@@ -929,14 +779,14 @@ Modules - reusable parts of our design
   max-width: 600px;
   float: left;
 }
-@media screen and (max-width: 1000px) {
-  /* line 111, ../sass/_partials/_copy-block.scss */
+@media screen and (max-width: 980px) {
+  /* line 121, ../sass/_partials/_copy-block.scss */
   .img-block_left {
     width: 100%;
   }
 }
 
-/* line 129, ../sass/_partials/_copy-block.scss */
+/* line 139, ../sass/_partials/_copy-block.scss */
 #block_4 .img-block_left img {
   height: auto;
   width: 100%;
@@ -945,26 +795,26 @@ Modules - reusable parts of our design
   float: left;
   padding-left: 6.0em;
 }
-@media screen and (max-width: 1000px) {
-  /* line 129, ../sass/_partials/_copy-block.scss */
+@media screen and (max-width: 980px) {
+  /* line 139, ../sass/_partials/_copy-block.scss */
   #block_4 .img-block_left img {
     padding-left: 1.0em;
   }
 }
 
-/* line 143, ../sass/_partials/_copy-block.scss */
+/* line 153, ../sass/_partials/_copy-block.scss */
 .line-block {
   width: 33.333%;
   float: left;
   display: block;
 }
-/* line 147, ../sass/_partials/_copy-block.scss */
+/* line 157, ../sass/_partials/_copy-block.scss */
 .line-block img {
   display: block;
   width: 100%;
   height: auto;
 }
-/* line 152, ../sass/_partials/_copy-block.scss */
+/* line 162, ../sass/_partials/_copy-block.scss */
 .line-block p.line-block-descript {
   display: block;
   width: 100%;
@@ -973,14 +823,14 @@ Modules - reusable parts of our design
   padding: 1.5em;
 }
 @media screen and (max-width: 979px) {
-  /* line 143, ../sass/_partials/_copy-block.scss */
+  /* line 153, ../sass/_partials/_copy-block.scss */
   .line-block {
     width: 100%;
     border-bottom: 10px solid #333;
   }
 }
 
-/* line 166, ../sass/_partials/_copy-block.scss */
+/* line 176, ../sass/_partials/_copy-block.scss */
 #block_horz {
   border-top: 15px solid #666;
   border-bottom: 15px solid #444;
@@ -995,19 +845,19 @@ Modules - reusable parts of our design
   display: table;
 }
 
-/* line 175, ../sass/_partials/_copy-block.scss */
+/* line 185, ../sass/_partials/_copy-block.scss */
 .horz_img {
   width: 33.3%;
   float: left;
 }
-/* line 178, ../sass/_partials/_copy-block.scss */
+/* line 188, ../sass/_partials/_copy-block.scss */
 .horz_img img {
   width: 100%;
   height: auto;
   display: block;
 }
 
-/* line 184, ../sass/_partials/_copy-block.scss */
+/* line 194, ../sass/_partials/_copy-block.scss */
 #mailchimp {
   width: 100%;
   display: block;
@@ -1019,19 +869,19 @@ Modules - reusable parts of our design
   display: table;
 }
 
-/* line 190, ../sass/_partials/_copy-block.scss */
+/* line 200, ../sass/_partials/_copy-block.scss */
 #mc_embed_signup {
   display: block;
   width: 50%;
   margin-left: auto;
   margin-right: auto;
 }
-/* line 195, ../sass/_partials/_copy-block.scss */
+/* line 205, ../sass/_partials/_copy-block.scss */
 #mc_embed_signup h2 {
   text-align: center;
 }
 @media screen and (max-width: 979px) {
-  /* line 190, ../sass/_partials/_copy-block.scss */
+  /* line 200, ../sass/_partials/_copy-block.scss */
   #mc_embed_signup {
     width: 80%;
   }
@@ -1047,7 +897,7 @@ body {
 #big-wrap {
   width: 100%;
   position: absolute;
-  z-index: 6;
+  z-index: 20;
   background-color: #fff;
 }
 
@@ -1055,12 +905,101 @@ body {
 #main {
   background-color: #fff;
   position: relative;
+  display: none;
 }
 
-/* line 16, ../sass/_partials/_structure.scss */
+/* line 17, ../sass/_partials/_structure.scss */
 .overlay-container {
   position: relative;
   z-index: 888;
   width: 100%;
   background-color: #fff;
+}
+
+/* line 1, ../sass/_partials/_embed-video.scss */
+.embed-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  max-width: 100%;
+}
+/* line 7, ../sass/_partials/_embed-video.scss */
+.embed-container img {
+  position: fixed;
+  display:block;
+  top: 0;
+  left: 0;
+  z-index:12;
+}
+
+/* line 13, ../sass/_partials/_embed-video.scss */
+.embed-container object, .embed-container embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* line 21, ../sass/_partials/_embed-video.scss */
+.embed-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  
+}
+
+.embed-container_b{
+  position: absolute;
+  top:0;
+  left:0;
+  z-index:10;
+  width:100%;
+}
+
+/* line 29, ../sass/_partials/_embed-video.scss */
+.fixed_iframe {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+}
+
+/* line 35, ../sass/_partials/_embed-video.scss */
+.fixed_img {
+  position: fixed !important;
+}
+
+/* line 39, ../sass/_partials/_embed-video.scss */
+.video-trigger {
+  z-index: 9999;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.6);
+  text-align: center;
+  color: white;
+  text-decoration: none;
+  width: 200px;
+  height: 60px;
+  z-index: 14;
+  left: 50%;
+  line-height: 60px;
+  margin-left: -100px;
+  bottom: 2%;
+  margin-top: -30px;
+  -webkit-transition: background .3s;
+  -moz-transition: background .3s;
+  transition: background .3s;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* line 63, ../sass/_partials/_embed-video.scss */
+.video-trigger:hover {
+  background: #363636;
+  color: #FFF200;
+  cursor: pointer;
 }

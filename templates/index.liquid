@@ -1,163 +1,128 @@
-<!-- /templates/index.liquid -->
-{% comment %}
+<!-- START IMPORTED CONTENT -->
 
-  This is the homepage of your site.
+<body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" >
+<div id="top"></div>
 
-  More info on global variables (available on all templates):
-    - http://docs.shopify.com/themes/liquid-variables/global
-{% endcomment %}
-
-<h2>{{ 'homepage.sections.frontpage_title' | t }}</h2>
-
-{% comment %}
-  Use class grid-uniform to have evenly sized columns clear
-  each other properly at each breakpoint.
-{% endcomment %}
-<div class="grid-uniform">
-
-  {% comment %}
-    Loop through products in your Frontpage collection.
-    This collection is created by default, but you must add products to it.
-  {% endcomment %}
-  {% for product in collections.frontpage.products limit:4 %}
-
-    {% comment %}
-      Change the grid item width by using classes from the grid in
-      the grid_item_width variable.
-
-      Example:
-        - {% assign grid_item_width = 'large--one-third medium--one-half' %}
-    {% endcomment %}
-    {% assign grid_item_width = 'large--one-quarter medium--one-half' %}
-    {% include 'product-grid-item' %}
-
-  {% else %}
-    {% comment %}
-      For onboarding new users to your theme, we add some default products and onboarding tutorials to help populate their store
-    {% endcomment %}
-    {% unless emptyState %}
-      {{ 'theme-onboarding.css' | global_asset_url | stylesheet_tag }}
-      {% assign emptyState = true %}
-    {% endunless %}
-
-    {% include 'onboarding-featured-products' %}
-
-  {% endfor %}
-
-</div>
-
-<hr>
-
-<h2>{{ 'homepage.sections.featured_title' | t }}</h2>
-
-<div class="grid-uniform">
-
-  {% comment %}
-    Show five collections, unless it's 'frontpage'.
-
-    Use an index variable in combination to the limit filter
-    to account for the frontpage collection being in top six returned.
-
-    Use variable isEmpty to check if no collections will be shown.
-    For empty store demo only.
-  {% endcomment %}
-  {% assign index = 1 %}
-  {% assign isEmpty = true %}
-
-  {% for collection in collections limit:6 %}
-    {% unless index > 5 %}
-
-      {% unless collection.handle == 'frontpage' %}
-        {% assign isEmpty = false %}
-        {% assign collection_item_width = 'large--one-fifth medium--one-third' %}
-        <div class="grid__item {{ collection_item_width }} text-center">
-          {% comment %}
-            Use capture to put the collection title in a variable that is used in liquid filters
-          {% endcomment %}
-          {% capture collection_title %}{{ collection.title | escape }}{% endcapture %}
-
-          <a href="{{ collection.url }}" title="{{ 'collections.general.link_title' | t: title: collection_title }}" class="grid__image">
-            {% if collection.image %}
-              {{ collection.image.src | img_url: 'large' | img_tag: collection_title }}
-            {% else %}
-              {{ collection.products.first.featured_image | img_url: 'large' | img_tag: collection_title }}
-            {% endif %}
-          </a>
-
-          <p>
-            <a href="{{ collection.url }}" title="{{ 'collections.general.link_title' | t: title: collection_title }}">{{ collection.title }}</a><br>
-            {{ 'collections.general.items_with_count' | t: count: collection.all_products_count }}
-          </p>
-        </div>
-        {% assign index = index | plus: 1 %}
-      {% endunless %}
-
-    {% endunless %}
-  {% endfor %}
-
-  {% comment %}
-    For onboarding new users to your theme, we add some default collections and onboarding tutorials to help populate their store
-  {% endcomment %}
-
-  {% if isEmpty %}
-    {% unless emptyState %}
-      {{ 'theme-onboarding.css' | global_asset_url | stylesheet_tag }}
-      {% assign emptyState = true %}
-    {% endunless %}
-
-    {% include 'onboarding-featured-collections' %}
-  {% endif %}
-
-</div>
-
-<hr>
-
-{% comment %}
-  Loop through three recent blog articles with the following code.
-
-  Since we're not on the blog template, we need to define the blog
-  handle we want to focus on. For this example we'll use the default 'news',
-  but you can create a blog page-specific content if you want.
-{% endcomment %}
-<h2>{{ 'homepage.sections.news_title' | t }}</h2>
-
-<div class="grid">
-  {% for article in blogs['news'].articles limit:3 %}
-
-    <div class="grid__item large--one-third">
-
-      <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: format: 'month_day_year' }}</time>
-      <h3><a href="{{ article.url }}">{{ article.title }}</a></h3>
-
-      {% comment %}
-        Add a surrounding div with class 'rte' to anything that will come from the rich text editor.
-        Since this is just a listing page, you can either use the excerpt or truncate the full article.
-      {% endcomment %}
-      <div class="rte">
-        {% if article.excerpt.size > 0 %}
-          {{ article.excerpt }}
-        {% else %}
-          <p>{{ article.content | strip_html | truncatewords: 20 }}</p>
-        {% endif %}
-      </div>
-
-      {% comment %}
-        Show off meta information like number of comments and tags.
-      {% endcomment %}
-      <ul>
-        {% if blog.comments_enabled? %}
-        <li>
-          <a href="{{ article.url }}#comments">
-            {{ article.comments_count }}
-            {{ 'blogs.comments.comments_with_count' | t: count: article.comments_count }}
-          </a>
-        </li>
-        {% endif %}
-      </ul>
-
-      <p><a href="{{ article.url }}">{{ 'blogs.article.read_more' | t }} &rarr;</a></p>
-
+    <div class='embed-container'>
+      <img class="vimeoplayer" data-vimeoid="136325708" src="https://cdn.shopify.com/s/files/1/0941/6882/files/video-fallback.jpg?8043753215982534187"  alt="Powered By Stacked">
+      <div class="video-trigger" id="video-trigger">Watch Video</div>
     </div>
 
-  {% endfor %}
-</div>
+  <div id="big-wrap">
+    <div id="main" class="delayed">
+        
+      <div class="overlay-container">
+        <section id="block_1" class="content-stripe story-container">
+            <div class=" ">
+                <h1><span>TRUE</span>wireless charging</h1>
+
+                <img src="https://cdn.shopify.com/s/files/1/0941/6882/files/02.jpg?10620664383253626105" />
+
+                <p>
+                    Wireless charging just took a giant step forward. STACKED charges faster than competing technologies because our magnetic connectors form direct contact to charge your iPhone®.
+                </p>
+                <p>
+                    STACKED is the first wireless charging ecosystem to charge your iPhone® just as efficiently as plugging into the wall.
+                </p>
+          
+                
+            </div>
+        </section>
+        
+
+        <section id="block_2" class="content-stripe story-container">
+            <div class=" ">
+                <h1>magnetic connection</h1>
+
+                <img src="https://cdn.shopify.com/s/files/1/0941/6882/files/06.jpg?10620664383253626105" />
+
+                <p>
+                    At the heart of the Stacked iPhone® case is our magnetic connector which is built directly into the back of all our slim cases to allow easy wireless charging while offering full protection. Direct battery transfer works even more efficiently than plugging into the wall.
+                </p>
+                
+            </div>
+        </section>
+        <section id="block_3" class="content-stripe story-container">
+            <div class=" ">
+                <h1>full protection</h1>
+                <img src="https://cdn.shopify.com/s/files/1/0941/6882/files/03.jpg?10620664383253626105" />
+                <p>
+                    Our case offers full phone protection and easy access to buttons and ports.
+                </p>
+
+                <p>
+                    Our proprietary patented secure slide lock offers a robust yet thin one piece case design for ease of assembly.
+                    No more missing pieces or multiple steps to assemble your case. Simply pop in your phone, slide the connector and you’re ready for wireless charging.
+                </p>
+                
+            </div>
+        </section>
+        <section id="block_4" class="content-stripe story-container">
+            <div class=" ">
+                <h1>STACKABLE</h1>
+                <img src="https://cdn.shopify.com/s/files/1/0941/6882/files/04.jpg?10620664383253626105" />
+                <p>
+                    Our magnets form a direct contact connection to charge your STACKED power packs and the AC wall plug. Quickly charge UP TO 5 STACKED power packs with the AC wall plug quick charge.
+                </p>
+                
+            </div>
+        </section>
+        <section id="block_5" class="content-stripe story-container">
+                <img src="https://cdn.shopify.com/s/files/1/0941/6882/files/05.jpg?10620664383253626105" />
+        </section>
+         <section id="mailchimp">
+             <!-- Begin MailChimp Signup Form -->
+            <link href="//cdn-images.mailchimp.com/embedcode/classic-081711.css" rel="stylesheet" type="text/css">
+            <style type="text/css">
+              #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; }
+              /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+                 We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+            </style>
+            <div id="mc_embed_signup">
+            <form action="//poweredbystacked.us11.list-manage.com/subscribe/post?u=21f5f1260cf018f631b94cfb1&amp;id=248c03b790" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                <div id="mc_embed_signup_scroll">
+              <h2>Pre-Order Mailing List</h2>
+            <div class="indicates-required"><span class="asterisk">*</span> indicates required</div>
+            <div class="mc-field-group">
+              <label for="mce-EMAIL">Email Address  <span class="asterisk">*</span>
+            </label>
+              <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
+            </div>
+              <div id="mce-responses" class="clear">
+                <div class="response" id="mce-error-response" style="display:none"></div>
+                <div class="response" id="mce-success-response" style="display:none"></div>
+              </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                <div style="position: absolute; left: -5000px;"><input type="text" name="b_21f5f1260cf018f631b94cfb1_248c03b790" tabindex="-1" value=""></div>
+                <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+                </div>
+            </form>
+            </div>
+            <script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+            <!--End mc_embed_signup-->
+         </section>
+        </div>
+
+        <div id="footer-block">
+          <a href="#0" class="cd-top icon-circle-up"></a>
+          <footer class="footer" role="contentinfo">
+      <div class="footer-links">
+        
+        <ul>
+          <li><h3>Follow Us</h3></li>
+          <li><a href="https://instagram.com/poweredbystacked/">Instagram</a></li>
+          <li><a href="#top" class="topper">Return To Top</a></li>
+        </ul>
+        <ul class="stacked_footer_logo">
+          <li><a href="#top" class="topper"><img src="https://cdn.shopify.com/s/files/1/0941/6882/files/STACKED_Icon.svg?1849780542212893891" /></a></li>
+        </ul> 
+        <ul>
+          <li><h3>Contact Us</h3></li>
+          <li>p: 310-277-4160</li>
+          <li>e: <a href="mailto:info@poweredbystack.com">info@poweredbystack.com</a></li>
+        </ul>
+      </div>
+
+      <hr>
+    </footer>
+      </div>
+    </div> <!-- End Main -->

@@ -145,3 +145,7 @@ $('.video-trigger').click(function(){
   console.log('fired');
 });
 
+
+$(document).ready(function(){
+   // $("body").addClass("modal-open");
+});

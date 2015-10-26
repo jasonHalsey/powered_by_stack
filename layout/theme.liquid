@@ -1,3 +1,4 @@
+
 <!doctype html>
 <!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
 <!--[if IE 7]><html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
@@ -31,6 +32,8 @@
 
   <!-- CSS ================================================== -->
   {{ 'timber.scss.css' | asset_url | stylesheet_tag }}
+  {{ 'imported_pl.css' | asset_url | stylesheet_tag }}
+  {{ 'scroll_top.css' | asset_url | stylesheet_tag }}
 
   <!-- Header hook for plugins ================================================== -->
   {{ content_for_header }}
@@ -38,6 +41,7 @@
 
   {{ '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js' | script_tag }}
   {{ 'modernizr.min.js' | asset_url | script_tag }}
+  {{ 'scripts.js' | asset_url | script_tag }}
 
   {% comment %}
     If you store has customer accounts disabled, you can remove the following JS file
@@ -48,135 +52,32 @@
 
 </head>
 
-{% comment %}
-  Add the page template as a class for easy page or template specific styling.
-{% endcomment %}
+
+
+<!-- START IMPORTED CONTENT -->
+
 <body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" >
+<div id="top"></div>
 
-  <div id="NavDrawer" class="drawer drawer--left">
-    <div class="drawer__header">
-      <div class="drawer__title h3">{{ 'layout.drawers.browse' | t }}</div>
-      <div class="drawer__close js-drawer-close">
-        <button type="button" class="icon-fallback-text">
-          <span class="icon icon-x" aria-hidden="true"></span>
-          <span class="fallback-text">{{ 'layout.drawers.close_menu' | t }}</span>
-        </button>
-      </div>
+    <div class='embed-container'>
+      <img class="vimeoplayer" data-vimeoid="136325708" src="https://cdn.shopify.com/s/files/1/0941/6882/files/video-fallback.jpg?8043753215982534187"  alt="Powered By Stacked">
+      <div class="video-trigger" id="video-trigger">Watch Video</div>
     </div>
-    <!-- begin mobile-nav -->
-    <ul class="mobile-nav">
-      <li class="mobile-nav__item mobile-nav__search">
-        {% include 'search-bar' %}
-      </li>
-      {% for link in linklists.main-menu.links %}
-        {% comment %}
-          Create a dropdown menu by naming a linklist the same as a link in the parent nav
 
-          More info on dropdowns:
-            - http://docs.shopify.com/manual/your-website/navigation/create-drop-down-menu
-        {% endcomment %}
-        {% assign child_list_handle = link.title | handleize %}
-        {% if linklists[child_list_handle].links != blank %}
-          <li class="mobile-nav__item{% if link.active %} mobile-nav__item--active{% endif %}" aria-haspopup="true">
-            <div class="mobile-nav__has-sublist">
-              <a href="{{ link.url }}" class="mobile-nav__link">{{ link.title }}</a>
-              <div class="mobile-nav__toggle">
-                <button type="button" class="icon-fallback-text mobile-nav__toggle-open">
-                  <span class="icon icon-plus" aria-hidden="true"></span>
-                  <span class="fallback-text">See More</span>
-                </button>
-                <button type="button" class="icon-fallback-text mobile-nav__toggle-close">
-                  <span class="icon icon-minus" aria-hidden="true"></span>
-                  <span class="fallback-text">{{ 'cart.general.close_cart' | t | json }}</span>
-                </button>
-              </div>
-            </div>
-            <ul class="mobile-nav__sublist">
-              {% for childlink in linklists[child_list_handle].links %}
-                <li class="mobile-nav__item {% if childlink.active %} mobile-nav__item--active{% endif %}">
-                  <a href="{{ childlink.url }}" class="mobile-nav__link">{{ childlink.title | escape }}</a>
-                </li>
-              {% endfor %}
-            </ul>
-          </li>
-        {% else %}
-          <li class="mobile-nav__item{% if link.active %} mobile-nav__item--active{% endif %}">
-            <a href="{{ link.url }}" class="mobile-nav__link">{{ link.title }}</a>
-          </li>
-        {% endif %}
-      {% endfor %}
+<!--     <div class='embed-container'>
+      <img class="vimeoplayer" data-vimeoid="136325708" src="https://cdn.shopify.com/s/files/1/0941/6882/files/video-fallback.jpg?3326988750406403319"  alt="Powered By Stacked">
+      <div class="video-trigger" id="video-trigger">Watch Video</div>
+     
+        <div class='embed-container_b'><iframe src='https://player.vimeo.com/video/136325708' frameborder='0' webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe></div>
+    </div> -->
 
-      {% comment %}
-        If customer accounts are enabled, provide login and create account links
-      {% endcomment %}
-      {% if shop.customer_accounts_enabled %}
-        {% if customer %}
-          <li class="mobile-nav__item">
-            {% if customer.first_name != blank %}
-              {% capture first_name %}<a href="/account">{{ customer.first_name }}</a>{% endcapture %}
-              {{ 'layout.customer.logged_in_as_html' | t: first_name: first_name }}
-            {% else %}
-              <a href="/account">{{ 'layout.customer.account' | t }}</a>
-            {% endif %}
-          </li>
-          <li class="mobile-nav__item">
-            {{ 'layout.customer.log_out' | t | customer_logout_link }}
-          </li>
-        {% else %}
-          <li class="mobile-nav__item">
-            {{ 'layout.customer.log_in' | t | customer_login_link }}
-          </li>
-          {% if shop.customer_accounts_optional %}
-          <li class="mobile-nav__item">
-            {{ 'layout.customer.create_account' | t | customer_register_link }}
-          </li>
-          {% endif %}
-        {% endif %}
-      {% endif %}
-    </ul>
-    <!-- //mobile-nav -->
-  </div>
-  <div id="CartDrawer" class="drawer drawer--right">
-    <div class="drawer__header">
-      <div class="drawer__title h3">{{ 'cart.general.title' | t }}</div>
-      <div class="drawer__close js-drawer-close">
-        <button type="button" class="icon-fallback-text">
-          <span class="icon icon-x" aria-hidden="true"></span>
-          <span class="fallback-text">{{ 'cart.general.close_cart' | t | json }}</span>
-        </button>
-      </div>
-    </div>
-    <div id="CartContainer"></div>
-  </div>
-  <div id="PageContainer" class="is-moved-by-drawer">
-    <header class="site-header" role="banner">
-      <div class="wrapper">
 
-        <div class="grid--full grid--table">
-          <div class="grid__item large--one-half">
-            {% comment %}
-              Use the uploaded logo from theme settings if enabled.
-              Site name gets precedence with H1 tag on homepage, div on other pages.
-            {% endcomment %}
-            {% if template == 'index' %}
-              <h1 class="site-header__logo large--left" itemscope itemtype="http://schema.org/Organization">
-            {% else %}
-              <div class="h1 site-header__logo large--left" itemscope itemtype="http://schema.org/Organization">
-            {% endif %}
-              {% if settings.logo_use_image %}
-                <a href="/" itemprop="url" class="site-header__logo-link">
-                  <img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }}" itemprop="logo">
-                </a>
-              {% else %}
-                <a href="/" itemprop="url">{{ shop.name }} BRO</a>
-              {% endif %}
-            {% if template == 'index' %}
-              </h1>
-            {% else %}
-              </div>
-            {% endif %}
-          </div>
-          <div class="grid__item large--one-half large--text-right medium-down--hide">
+    <div class="header delayed nonfixed">
+      
+        <a href="#mailchimp" class="signup desktop" id="list-trigger">Pre-Order Now</a>
+         <img src="https://cdn.shopify.com/s/files/1/0941/6882/files/logo.svg?8043753215982534187" />
+        <a href="#mailchimp" class="signup mobile" id="list-trigger">Pre-Order Now</a>
+        <div class="grid__item large--one-half large--text-right medium-down--hide">
             {% comment %}
               Show number of items in the cart and total cost in the /cart link
 
@@ -218,166 +119,184 @@
                 {% endif %}
               </div>
             {% endif %}
-
-            <div class="site-header__search">
-              {% include 'search-bar' %}
-            </div>
           </div>
-        </div>
 
-      </div>
-    </header>
+    </div>
 
-    <nav class="nav-bar" role="navigation">
-      <div class="wrapper">
-        <div class="medium-down--hide">
-          {% comment %}
-            List out your main-menu linklist (default)
-
-            More info on linklists:
-              - http://docs.shopify.com/themes/liquid-variables/linklists
-          {% endcomment %}
-          <!-- begin site-nav -->
-          <ul class="site-nav" id="AccessibleNav">
-            {% for link in linklists.main-menu.links %}
-              {% comment %}
-                Create a dropdown menu by naming a linklist the same as a link in the parent nav
-
-                More info on dropdowns:
-                  - http://docs.shopify.com/manual/your-website/navigation/create-drop-down-menu
-              {% endcomment %}
-              {% assign child_list_handle = link.title | handleize %}
-              {% if linklists[child_list_handle].links != blank %}
-                <li class="site-nav--has-dropdown{% if link.active %} site-nav--active{% endif %}" aria-haspopup="true">
-                  <a href="{{ link.url }}" class="site-nav__link">
-                    {{ link.title }}
-                    <span class="icon icon-arrow-down" aria-hidden="true"></span>
-                  </a>
-                  <ul class="site-nav__dropdown">
-                    {% for childlink in linklists[child_list_handle].links %}
-                      <li{% if childlink.active %} class="site-nav--active"{% endif %}>
-                        <a href="{{ childlink.url }}" class="site-nav__link">{{ childlink.title | escape }}</a>
-                      </li>
-                    {% endfor %}
-                  </ul>
-                </li>
-              {% else %}
-                <li {% if link.active %}class="site-nav--active"{% endif %}>
-                  <a href="{{ link.url }}" class="site-nav__link">{{ link.title }}</a>
-                </li>
-              {% endif %}
-            {% endfor %}
-          </ul>
-          <!-- //site-nav -->
-        </div>
-        <div class="large--hide medium-down--show">
-          <div class="grid">
-            <div class="grid__item one-half">
-              <div class="site-nav--mobile">
-                <button type="button" class="icon-fallback-text site-nav__link js-drawer-open-left" aria-controls="NavDrawer" aria-expanded="false">
-                  <span class="icon icon-hamburger" aria-hidden="true"></span>
-                  <span class="fallback-text">{{ 'layout.navigation.menu' | t }}</span>
-                </button>
-              </div>
-            </div>
-            <div class="grid__item one-half text-right">
-              <div class="site-nav--mobile">
-                <a href="/cart" class="js-drawer-open-right site-nav__link" aria-controls="CartDrawer" aria-expanded="false">
-                  <span class="icon-fallback-text">
-                    <span class="icon icon-cart" aria-hidden="true"></span>
-                    <span class="fallback-text">{{ 'layout.cart.title' | t }}</span>
-                  </span>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </nav>
-
-    <main class="wrapper main-content" role="main">
-
-      {{ content_for_layout }}
-
-    </main>
-
-    <!-- begin site-footer -->
-    <footer class="site-footer small--text-center" role="contentinfo">
-      <div class="wrapper">
-        <div class="grid">
-          {% if settings.footer_social_enable %}
-            <div class="grid__item large--one-third medium--one-half">
-              <h3>{{ 'layout.footer.social_title' | t }}</h3>
-                <ul class="inline-list social-icons">
-                  {% if settings.social_twitter_link != blank %}
-                    <li>
-                      <a class="icon-fallback-text" href="{{ settings.social_twitter_link }}" title="{{ shop.name }} on Twitter">
-                        <span class="icon icon-twitter" aria-hidden="true"></span>
-                        <span class="fallback-text">Twitter</span>
-                      </a>
-                    </li>
-                  {% endif %}
-                  {% if settings.social_facebook_link != blank %}
-                    <li>
-                      <a class="icon-fallback-text" href="{{ settings.social_facebook_link }}" title="{{ shop.name }} on Facebook">
-                        <span class="icon icon-facebook" aria-hidden="true"></span>
-                        <span class="fallback-text">Facebook</span>
-                      </a>
-                    </li>
-                  {% endif %}
-                </ul>
-            </div>
-          {% endif %}
-          {% if settings.footer_newsletter_enable %}
-            <div class="grid__item large--one-third push--large--one-third medium--one-half">
-              {% comment %}
-                MailChimp is the go-to newsletter service for Shopify.
-                Use the link below to find your MailChimp form action
-                and insert it in your site settings.
-
-                MailChimp newsletter integration and requirement:
-                 - http://docs.shopify.com/support/configuration/store-customization/where-do-i-get-my-mailchimp-form-action
-              {% endcomment %}
-              <h3>{{ 'layout.footer.newsletter_title' | t }}</h3>
-              {% if settings.newsletter_form_action != blank %}
-                {% assign form_action = settings.newsletter_form_action %}
-              {% else %}
-                {% assign form_action = '#' %}
-              {% endif %}
-              <form action="{{ form_action }}" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" class="input-group">
-                <input type="email" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="{{ 'general.newsletter_form.newsletter_email' | t }}" name="EMAIL" id="mail" class="input-group-field" aria-label="{{ 'general.newsletter_form.newsletter_email' | t }}" autocorrect="off" autocapitalize="off">
-                <span class="input-group-btn">
-                  <input type="submit" class="btn" name="subscribe" id="subscribe" value="{{ 'general.newsletter_form.submit' | t }}">
-                </span>
-              </form>
-            </div>
-          {% endif %}
-          <div class="grid__item text-center">
-            <hr>
+    <div class="header delayed fixed">
+        <a href="#mailchimp" class="signup desktop" id="list-trigger">Pre-Order Now</a>
+         <img src="https://cdn.shopify.com/s/files/1/0941/6882/files/logo.svg?8043753215982534187" />
+        <a href="#mailchimp" class="signup mobile" id="list-trigger">Pre-Order Now</a>
+        <div class="grid__item large--one-half large--text-right medium-down--hide">
             {% comment %}
-              Loop through available payment methods and show their icons.
+              Show number of items in the cart and total cost in the /cart link
+
+              Ajax Cart Notes:
+                - #cartCount updates the total number of items in the cart
+                - #cartCost updates the total cost of the cart
+                - Documentation:  http://shopify.com/timber#ajax-cart
             {% endcomment %}
-            {% unless shop.enabled_payment_types == empty %}
-              <h4 class="text-center">{{ 'layout.footer.accepted_payments' | t }}</h4>
-              <ul class="inline-list payment-icons">
-                {% for type in shop.enabled_payment_types %}
-                  <li>
-                    <span class="icon-fallback-text">
-                      <span class="icon icon-{{type}}" aria-hidden="true"></span>
-                      <span class="fallback-text">{{ type | replace: '_',' '}}</span>
-                    </span>
-                  </li>
-                {% endfor %}
-              </ul>
-            {% endunless %}
-            <a href="http://shopify.com/timber">Timber Theme Framework</a> by <a href="http://www.shopify.com?ref=Timber" title="Shopify.com">Shopify</a><br>
-            <small>{{ powered_by_link }}</small>
+            <div>
+              <a href="/cart" class="site-header__cart-toggle js-drawer-open-right" aria-controls="CartDrawer" aria-expanded="false">
+                <span class="icon-fallback-text">
+                  <span class="icon icon-cart" aria-hidden="true"></span>
+                </span>
+                {{ 'layout.cart.title' | t }}
+                (<span id="CartCount">{{ cart.item_count }}</span>
+                {{ 'layout.cart.items_count' | t: count: cart.item_count }}
+                <span id="CartCost">{{ cart.total_price | money }}</span>)
+              </a>
+            </div>
+
+            {% comment %}
+              If customer accounts are enabled, provide login and create account links
+            {% endcomment %}
+            {% if shop.customer_accounts_enabled %}
+              <div>
+                {% if customer %}
+                  {% if customer.first_name != blank %}
+                    {% capture first_name %}<a href="/account">{{ customer.first_name }}</a>{% endcapture %}
+                    {{ 'layout.customer.logged_in_as_html' | t: first_name: first_name }}
+                  {% else %}
+                    <a href="/account">{{ 'layout.customer.account' | t }}</a>
+                  {% endif %}
+                  | {{ 'layout.customer.log_out' | t | customer_logout_link }}
+                {% else %}
+                  {{ 'layout.customer.log_in' | t | customer_login_link }}
+                  {% if shop.customer_accounts_optional %}
+                  | {{ 'layout.customer.create_account' | t | customer_register_link }}
+                  {% endif %}
+                {% endif %}
+              </div>
+            {% endif %}
           </div>
+
+    </div>
+
+
+    <div id="big-wrap">
+    <div id="main" class="delayed">
+        
+      <div class="overlay-container">
+        <section id="block_1" class="content-stripe story-container">
+            <div class=" ">
+                <h1><span>TRUE</span>wireless charging</h1>
+
+                <img src="https://cdn.shopify.com/s/files/1/0941/6882/files/02.jpg?10620664383253626105" />
+
+                <p>
+                    Wireless charging just took a giant step forward. STACKED charges faster than competing technologies because our magnetic connectors form direct contact to charge your iPhone®.
+                </p>
+                <p>
+                    STACKED is the first wireless charging ecosystem to charge your iPhone® just as efficiently as plugging into the wall.
+                </p>
+          
+                
+            </div>
+        </section>
+        
+
+        <section id="block_2" class="content-stripe story-container">
+            <div class=" ">
+                <h1>magnetic connection</h1>
+
+                <img src="https://cdn.shopify.com/s/files/1/0941/6882/files/06.jpg?10620664383253626105" />
+
+                <p>
+                    At the heart of the Stacked iPhone® case is our magnetic connector which is built directly into the back of all our slim cases to allow easy wireless charging while offering full protection. Direct battery transfer works even more efficiently than plugging into the wall.
+                </p>
+                
+            </div>
+        </section>
+        <section id="block_3" class="content-stripe story-container">
+            <div class=" ">
+                <h1>full protection</h1>
+                <img src="https://cdn.shopify.com/s/files/1/0941/6882/files/03.jpg?10620664383253626105" />
+                <p>
+                    Our case offers full phone protection and easy access to buttons and ports.
+                </p>
+
+                <p>
+                    Our proprietary patented secure slide lock offers a robust yet thin one piece case design for ease of assembly.
+                    No more missing pieces or multiple steps to assemble your case. Simply pop in your phone, slide the connector and you’re ready for wireless charging.
+                </p>
+                
+            </div>
+        </section>
+        <section id="block_4" class="content-stripe story-container">
+            <div class=" ">
+                <h1>STACKABLE</h1>
+                <img src="https://cdn.shopify.com/s/files/1/0941/6882/files/04.jpg?10620664383253626105" />
+                <p>
+                    Our magnets form a direct contact connection to charge your STACKED power packs and the AC wall plug. Quickly charge UP TO 5 STACKED power packs with the AC wall plug quick charge.
+                </p>
+                
+            </div>
+        </section>
+        <section id="block_5" class="content-stripe story-container">
+                <img src="https://cdn.shopify.com/s/files/1/0941/6882/files/05.jpg?10620664383253626105" />
+        </section>
+{{content_for_layout}}
+         <section id="mailchimp">
+             <!-- Begin MailChimp Signup Form -->
+            <link href="//cdn-images.mailchimp.com/embedcode/classic-081711.css" rel="stylesheet" type="text/css">
+            <style type="text/css">
+              #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; }
+              /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+                 We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+            </style>
+            <div id="mc_embed_signup">
+            <form action="//poweredbystacked.us11.list-manage.com/subscribe/post?u=21f5f1260cf018f631b94cfb1&amp;id=248c03b790" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                <div id="mc_embed_signup_scroll">
+              <h2>Pre-Order Mailing List</h2>
+            <div class="indicates-required"><span class="asterisk">*</span> indicates required</div>
+            <div class="mc-field-group">
+              <label for="mce-EMAIL">Email Address  <span class="asterisk">*</span>
+            </label>
+              <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
+            </div>
+              <div id="mce-responses" class="clear">
+                <div class="response" id="mce-error-response" style="display:none"></div>
+                <div class="response" id="mce-success-response" style="display:none"></div>
+              </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                <div style="position: absolute; left: -5000px;"><input type="text" name="b_21f5f1260cf018f631b94cfb1_248c03b790" tabindex="-1" value=""></div>
+                <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+                </div>
+            </form>
+            </div>
+            <script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+            <!--End mc_embed_signup-->
+         </section>
         </div>
+
+        <div id="footer-block">
+          <a href="#0" class="cd-top icon-circle-up"></a>
+          <footer class="footer" role="contentinfo">
+      <div class="footer-links">
+        
+        <ul>
+          <li><h3>Follow Us</h3></li>
+          <li><a href="https://instagram.com/poweredbystacked/">Instagram</a></li>
+          <li><a href="#top" class="topper">Return To Top</a></li>
+        </ul>
+        <ul class="stacked_footer_logo">
+          <li><a href="#top" class="topper"><img src="https://cdn.shopify.com/s/files/1/0941/6882/files/STACKED_Icon.svg?1849780542212893891" /></a></li>
+        </ul> 
+        <ul>
+          <li><h3>Contact Us</h3></li>
+          <li>p: 310-277-4160</li>
+          <li>e: <a href="mailto:info@poweredbystack.com">info@poweredbystack.com</a></li>
+        </ul>
       </div>
+
+      <hr>
     </footer>
-    <!-- //site-footer -->
-  </div>
+      </div>
+    </div> <!-- End Main -->
+    
+    </div> <!-- End bigwrap -->
+
+    <!-- //timber-footer -->
 
   {{ 'fastclick.min.js' | asset_url | script_tag }}
   {{ 'timber.js' | asset_url | script_tag }}
@@ -428,3 +347,4 @@
 
 </body>
 </html>
+

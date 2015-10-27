@@ -1286,28 +1286,7 @@ body {
     columns: 2 8em;
   }
 }
-/* line 132, ../sass/_partials/_modal.scss */
-.modal .modal-inner a.cta {
-  color: #fff;
-  display: inline-block;
-  margin-right: 0.5em;
-  margin-top: 1em;
-}
-/* line 138, ../sass/_partials/_modal.scss */
-.modal .modal-inner a.cta:last-child {
-  padding: 0 2em;
-}
-/* line 144, ../sass/_partials/_modal.scss */
-.modal .modal-state:checked + .modal-fade-screen {
-  opacity: 1;
-  visibility: visible;
-}
-/* line 149, ../sass/_partials/_modal.scss */
-.modal .modal-state:checked + .modal-fade-screen .modal-inner {
-  top: 0.5em;
-}
 
-/* line 154, ../sass/_partials/_modal.scss */
-.modal-open {
-  overflow: hidden;
+#modal-wrapper form#form{
+  bottom: 75px!important;
 }

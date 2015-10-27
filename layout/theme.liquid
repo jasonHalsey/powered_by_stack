@@ -59,104 +59,66 @@
 <body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" >
 <div id="top"></div>
 
-
-    <div class="header delayed nonfixed">
-      
-        <a href="http://powered-by-stacked.myshopify.com/products/i-phone-6-bundle-pack" class="signup desktop" id="list-trigger">Pre-Order Now</a>
-         <img src="https://cdn.shopify.com/s/files/1/0941/6882/files/logo.svg?8043753215982534187" />
-        <a href="http://powered-by-stacked.myshopify.com/products/i-phone-6-bundle-pack" class="signup mobile" id="list-trigger">Pre-Order Now</a>
-        <div class="grid__item large--one-half large--text-right medium-down--hide">
-            {% comment %}
-              Show number of items in the cart and total cost in the /cart link
-
-              Ajax Cart Notes:
-                - #cartCount updates the total number of items in the cart
-                - #cartCost updates the total cost of the cart
-                - Documentation:  http://shopify.com/timber#ajax-cart
-            {% endcomment %}
-            <div>
-              <a href="/cart" class="site-header__cart-toggle js-drawer-open-right" aria-controls="CartDrawer" aria-expanded="false">
-                <span class="icon-fallback-text">
-                  <span class="icon icon-cart" aria-hidden="true"></span>
-                </span>
-                {{ 'layout.cart.title' | t }}
-                (<span id="CartCount">{{ cart.item_count }}</span>
-                {{ 'layout.cart.items_count' | t: count: cart.item_count }}
-                <span id="CartCost">{{ cart.total_price | money }}</span>)
-              </a>
-            </div>
-
-            {% comment %}
-              If customer accounts are enabled, provide login and create account links
-            {% endcomment %}
-            {% if shop.customer_accounts_enabled %}
-              <div>
-                {% if customer %}
-                  {% if customer.first_name != blank %}
-                    {% capture first_name %}<a href="/account">{{ customer.first_name }}</a>{% endcapture %}
-                    {{ 'layout.customer.logged_in_as_html' | t: first_name: first_name }}
-                  {% else %}
-                    <a href="/account">{{ 'layout.customer.account' | t }}</a>
-                  {% endif %}
-                  | {{ 'layout.customer.log_out' | t | customer_logout_link }}
-                {% else %}
-                  {{ 'layout.customer.log_in' | t | customer_login_link }}
-                  {% if shop.customer_accounts_optional %}
-                  | {{ 'layout.customer.create_account' | t | customer_register_link }}
-                  {% endif %}
-                {% endif %}
-              </div>
-            {% endif %}
-          </div>
-
+  {% if template == 'index' %}
+    <div class='embed-container'>
+      <img class="vimeoplayer" data-vimeoid="136325708" src="https://cdn.shopify.com/s/files/1/0941/6882/files/video-fallback.jpg?8043753215982534187"  alt="Powered By Stacked">
+      <div class="video-trigger" id="video-trigger">Watch Video </div>
     </div>
 
-    <div class="header delayed fixed">
-        <a href="http://powered-by-stacked.myshopify.com/products/i-phone-6-bundle-pack" class="signup desktop" id="list-trigger">Pre-Order Now</a>
-         <img src="https://cdn.shopify.com/s/files/1/0941/6882/files/logo.svg?8043753215982534187" />
-        <a href="http://powered-by-stacked.myshopify.com/products/i-phone-6-bundle-pack" class="signup mobile" id="list-trigger">Pre-Order Now</a>
-        <div class="grid__item large--one-half large--text-right medium-down--hide">
-            {% comment %}
-              Show number of items in the cart and total cost in the /cart link
+    <div id="content-anchor"></div>
+    <div id="sticky-phantom"></div>
+    <div id="sticky" class="header delayed">
+  {% else %}
+    <div id="sticky" class="header non-delayed">
+  {% endif %}
 
-              Ajax Cart Notes:
-                - #cartCount updates the total number of items in the cart
-                - #cartCost updates the total cost of the cart
-                - Documentation:  http://shopify.com/timber#ajax-cart
-            {% endcomment %}
-            <div>
-              <a href="/cart" class="site-header__cart-toggle js-drawer-open-right" aria-controls="CartDrawer" aria-expanded="false">
-                <span class="icon-fallback-text">
-                  <span class="icon icon-cart" aria-hidden="true"></span>
-                </span>
-                {{ 'layout.cart.title' | t }}
-                (<span id="CartCount">{{ cart.item_count }}</span>
-                {{ 'layout.cart.items_count' | t: count: cart.item_count }}
-                <span id="CartCost">{{ cart.total_price | money }}</span>)
-              </a>
-            </div>
+        <a href="/"> <img src="https://cdn.shopify.com/s/files/1/0941/6882/files/logo.svg?8043753215982534187" /></a>
 
-            {% comment %}
-              If customer accounts are enabled, provide login and create account links
-            {% endcomment %}
-            {% if shop.customer_accounts_enabled %}
-              <div>
-                {% if customer %}
-                  {% if customer.first_name != blank %}
-                    {% capture first_name %}<a href="/account">{{ customer.first_name }}</a>{% endcapture %}
-                    {{ 'layout.customer.logged_in_as_html' | t: first_name: first_name }}
-                  {% else %}
-                    <a href="/account">{{ 'layout.customer.account' | t }}</a>
-                  {% endif %}
-                  | {{ 'layout.customer.log_out' | t | customer_logout_link }}
-                {% else %}
-                  {{ 'layout.customer.log_in' | t | customer_login_link }}
-                  {% if shop.customer_accounts_optional %}
-                  | {{ 'layout.customer.create_account' | t | customer_register_link }}
-                  {% endif %}
+        <div class="right-nav">
+            <a href="http://powered-by-stacked.myshopify.com/products/i-phone-6-bundle-pack" class="signup desktop" id="list-trigger">Pre-Order Now</a>
+            <div class="cart-container">
+                {% comment %}
+                  Show number of items in the cart and total cost in the /cart link
+
+                  Ajax Cart Notes:
+                    - #cartCount updates the total number of items in the cart
+                    - #cartCost updates the total cost of the cart
+                    - Documentation:  http://shopify.com/timber#ajax-cart
+                {% endcomment %}
+                <div id="cart-block">
+                  <a href="/cart" class="site-header__cart-toggle js-drawer-open-right" aria-controls="CartDrawer" aria-expanded="false">
+                    <span class="icon-fallback-text">
+                      <span class="icon icon-cart" aria-hidden="true"></span>
+                    </span>
+                    {{ 'layout.cart.title' | t }}
+                    (<span id="CartCount">{{ cart.item_count }}</span>
+                    {{ 'layout.cart.items_count' | t: count: cart.item_count }}
+                    <span id="CartCost">{{ cart.total_price | money }}</span>)
+                  </a>
+                </div>
+
+                {% comment %}
+                  If customer accounts are enabled, provide login and create account links
+                {% endcomment %}
+                {% if shop.customer_accounts_enabled %}
+                  <div>
+                    {% if customer %}
+                      {% if customer.first_name != blank %}
+                        {% capture first_name %}<a href="/account">{{ customer.first_name }}</a>{% endcapture %}
+                        {{ 'layout.customer.logged_in_as_html' | t: first_name: first_name }}
+                      {% else %}
+                        <a href="/account">{{ 'layout.customer.account' | t }}</a>
+                      {% endif %}
+                      | {{ 'layout.customer.log_out' | t | customer_logout_link }}
+                    {% else %}
+                      {{ 'layout.customer.log_in' | t | customer_login_link }}
+                      {% if shop.customer_accounts_optional %}
+                      | {{ 'layout.customer.create_account' | t | customer_register_link }}
+                      {% endif %}
+                    {% endif %}
+                  </div>
                 {% endif %}
               </div>
-            {% endif %}
           </div>
 
     </div>
@@ -164,8 +126,31 @@
 
     <div id="big-wrap">
       {{ content_for_layout }}
-    </div> <!-- End bigwrap -->
+    
+        <div id="footer-block">
+          <a href="#0" class="cd-top icon-circle-up"></a>
+          <footer class="footer" role="contentinfo">
+      <div class="footer-links">
+        
+        <ul>
+          <li><h3>Follow Us</h3></li>
+          <li><a href="https://instagram.com/poweredbystacked/">Instagram</a></li>
+          <li><a href="#top" class="topper">Return To Top</a></li>
+        </ul>
+        <ul class="stacked_footer_logo">
+          <li><a href="#top" class="topper"><img src="https://cdn.shopify.com/s/files/1/0941/6882/files/STACKED_Icon.svg?1849780542212893891" /></a></li>
+        </ul> 
+        <ul>
+          <li><h3>Contact Us</h3></li>
+          <li>p: 310-277-4160</li>
+          <li>e: <a href="mailto:info@poweredbystack.com">info@poweredbystack.com</a></li>
+        </ul>
+      </div>
 
+      <hr>
+    </footer>
+      </div>
+    </div> <!-- End Main -->
     <!-- //timber-footer -->
 
   {{ 'fastclick.min.js' | asset_url | script_tag }}

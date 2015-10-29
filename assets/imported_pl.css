@@ -434,9 +434,13 @@ picture {
   display: block;
   float:left;
   margin: 0 0 0 1.0em;
-  -webkit-transition: all 0.3s;
+  position:absolute;
+  top:50%;
+  -webkit-transform: translate(0%, -50%);
+  transform: translate(0%, -50%);
+/*  -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
-  transition: all 0.3s;
+  transition: all 0.3s;*/
 }
 @media screen and (max-width: 980px) {
   /* line 45, ../sass/_partials/_sticky_header.scss */
@@ -938,6 +942,7 @@ Modules - reusable parts of our design
 #block_5 {
   padding-bottom: 0 !important;
   padding-top: 6.0em;
+  border-bottom: none;
 }
 /* line 153, ../sass/_partials/_copy-block.scss */
 #block_5 img {
@@ -1042,7 +1047,7 @@ body {
 /* line 5, ../sass/_partials/_structure.scss */
 #big-wrap {
   width: 100%;
-  position: absolute;
+  /*position: absolute;*/
   z-index: 6;
   background-color: #fff;
 }
@@ -1066,15 +1071,16 @@ body {
 .embed-container {
   position: relative;
   /*padding-bottom: 56.25%;*/
-  height: 0;
+/*  height: 0;*/
   overflow: hidden;
   max-width: 100%;
 }
 /* line 7, ../sass/_partials/_embed-video.scss */
 .embed-container img {
-  position: fixed;
+  position: fixed; 
   top: 0;
   left: 0;
+  display: block;
 }
 
 /* line 13, ../sass/_partials/_embed-video.scss */
@@ -1336,4 +1342,12 @@ body {
 
 .product-block{
   padding: 0.5em 4.0em;
+}
+
+.cart-wrapper{
+  padding: 1.0em 6.0em 0;
+}
+
+#your-shopping-cart a{
+  color:#666;
 }

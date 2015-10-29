@@ -66,7 +66,6 @@
       var placeholder_height = $(".embed-container img").height();
       console.log(placeholder_height);
       $(".embed-container").css("height", placeholder_height);
-      $(".embed-container_b").css("height", placeholder_height);
     }
 
 //Lazy Load All Content Other Than Main Image
@@ -74,10 +73,10 @@
     $('.delayed').fadeIn(3000);
   }
 
-
 $(document).ready(function(){
-    delayLoad();
     embedContainer();
+    delayLoad();
+    $('.fancybox').fancybox();
 
   //swap video placeholder with vimeo video on 
   $('.video-trigger').click(function(){
@@ -109,7 +108,10 @@ function sticky_relocate() {
   }
 }
 
+
 $(function () {
   $(window).scroll(sticky_relocate);
   sticky_relocate();
+
 });
+

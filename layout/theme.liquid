@@ -34,6 +34,7 @@
   {{ 'timber.scss.css' | asset_url | stylesheet_tag }}
   {{ 'imported_pl.css' | asset_url | stylesheet_tag }}
   {{ 'scroll_top.css' | asset_url | stylesheet_tag }}
+  {{ 'jquery.fancybox.css' | asset_url | stylesheet_tag }}
 
   <!-- Header hook for plugins ================================================== -->
   {{ content_for_header }}
@@ -61,7 +62,7 @@
 
   {% if template == 'index' %}
     <div class='embed-container'>
-      <img class="vimeoplayer" data-vimeoid="136325708" src="https://cdn.shopify.com/s/files/1/0941/6882/files/video-fallback.jpg?8043753215982534187"  alt="Powered By Stacked">
+      <img class="vimeoplayer" data-vimeoid="140811726" src="https://cdn.shopify.com/s/files/1/0941/6882/files/video-fallback.jpg?8043753215982534187"  alt="Powered By Stacked">
       <div class="video-trigger" id="video-trigger">Watch Video </div>
     </div>
 
@@ -69,6 +70,8 @@
     <div id="sticky-phantom"></div>
     <div id="sticky" class="header delayed">
   {% else %}
+    <div id="content-anchor"></div>
+    <div id="sticky-phantom"></div>
     <div id="sticky" class="header non-delayed">
   {% endif %}
 
@@ -95,7 +98,7 @@
                     {{ 'layout.cart.items_count' | t: count: cart.item_count }}
                     <span id="CartCost">{{ cart.total_price | money }}</span>)
                   </a>
-                </div>
+                </div><!-- End cart-block -->
 
                 {% comment %}
                   If customer accounts are enabled, provide login and create account links
@@ -118,43 +121,42 @@
                     {% endif %}
                   </div>
                 {% endif %}
-              </div>
-          </div>
-
-    </div>
+              </div><!-- End cart-container -->
+          </div><!-- End right-nav -->
+    </div><!-- End sticky -->
 
 
     <div id="big-wrap">
       {{ content_for_layout }}
-    
-        <div id="footer-block">
-          <a href="#0" class="cd-top icon-circle-up"></a>
-          <footer class="footer" role="contentinfo">
-      <div class="footer-links">
-        
-        <ul>
-          <li><h3>Follow Us</h3></li>
-          <li><a href="https://instagram.com/poweredbystacked/">Instagram</a></li>
-          <li><a href="#top" class="topper">Return To Top</a></li>
-        </ul>
-        <ul class="stacked_footer_logo">
-          <li><a href="#top" class="topper"><img src="https://cdn.shopify.com/s/files/1/0941/6882/files/STACKED_Icon.svg?1849780542212893891" /></a></li>
-        </ul> 
-        <ul>
-          <li><h3>Contact Us</h3></li>
-          <li>p: 310-277-4160</li>
-          <li>e: <a href="mailto:info@poweredbystack.com">info@poweredbystack.com</a></li>
-        </ul>
-      </div>
+    </div>
+    <div id="footer-block">
+      <a href="#0" class="cd-top icon-circle-up"></a>
+      <footer class="footer" role="contentinfo">
+        <div class="footer-links">
+          <ul>
+            <li><h3>Follow Us</h3></li>
+            <li><a href="https://instagram.com/poweredbystacked/">Instagram</a></li>
+            <li><a href="#top" class="topper">Return To Top</a></li>
+          </ul>
+          <ul class="stacked_footer_logo">
+            <li><a href="#top" class="topper"><img src="https://cdn.shopify.com/s/files/1/0941/6882/files/STACKED_Icon_sm-wt.svg?5457506295677340747" /></a></li>
+          </ul> 
+          <ul>
+            <li><h3>Contact Us</h3></li>
+            <li>p: 310-277-4160</li>
+            <li>e: <a href="mailto:info@poweredbystack.com">info@poweredbystack.com</a></li>
+          </ul>
 
-      <hr>
-    </footer>
-      </div>
+      </footer>
+    </div><!-- End footer-block -->
+      
     </div> <!-- End Main -->
-    <!-- //timber-footer -->
+</div> <!-- End Main -->
+
 
   {{ 'fastclick.min.js' | asset_url | script_tag }}
   {{ 'timber.js' | asset_url | script_tag }}
+  {{ 'jquery.fancybox.js' | asset_url | script_tag }}
 
   {% comment %}
     Template-specific js

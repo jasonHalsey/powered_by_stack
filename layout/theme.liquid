@@ -33,7 +33,7 @@
   <!-- CSS ================================================== -->
   {{ 'timber.scss.css' | asset_url | stylesheet_tag }}
   {{ 'imported_pl.css' | asset_url | stylesheet_tag }}
-  {{ 'scroll_top.css' | asset_url | stylesheet_tag }}
+ {% comment %} {{ 'scroll_top.css' | asset_url | stylesheet_tag }}{% endcomment %}
   {{ 'jquery.fancybox.css' | asset_url | stylesheet_tag }}
 
   <!-- Header hook for plugins ================================================== -->
@@ -42,7 +42,7 @@
 
   {{ '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js' | script_tag }}
   {{ 'modernizr.min.js' | asset_url | script_tag }}
-  {{ 'scripts.js' | asset_url | script_tag }}
+ 
 
   {% comment %}
     If you store has customer accounts disabled, you can remove the following JS file
@@ -62,7 +62,7 @@
 
   {% if template == 'index' %}
     <div class='embed-container'>
-      <img class="vimeoplayer" data-vimeoid="140811726" src="https://cdn.shopify.com/s/files/1/0941/6882/files/video-fallback.jpg?8043753215982534187"  alt="Powered By Stacked">
+      <img class="vimeoplayer embed-container-block" data-vimeoid="140811726" src="https://cdn.shopify.com/s/files/1/0941/6882/files/video-fallback.jpg?14243515678793726831"  alt="Powered By Stacked">
       <div class="video-trigger" id="video-trigger">Watch Video </div>
     </div>
 
@@ -78,7 +78,7 @@
         <a href="/"> <img src="https://cdn.shopify.com/s/files/1/0941/6882/files/logo.svg?8043753215982534187" /></a>
 
         <div class="right-nav">
-            <a href="http://powered-by-stacked.myshopify.com/products/i-phone-6-bundle-pack" class="signup desktop" id="list-trigger">Pre-Order Now</a>
+            <a href="http://powered-by-stacked.myshopify.com/pages/stacked-offerings" class="signup desktop" id="list-trigger">Pre-Order Now</a>
             <div class="cart-container">
                 {% comment %}
                   Show number of items in the cart and total cost in the /cart link
@@ -153,7 +153,7 @@
     </div> <!-- End Main -->
 </div> <!-- End Main -->
 
-
+  {{ 'scripts.js' | asset_url | script_tag }}
   {{ 'fastclick.min.js' | asset_url | script_tag }}
   {{ 'timber.js' | asset_url | script_tag }}
   {{ 'jquery.fancybox.js' | asset_url | script_tag }}

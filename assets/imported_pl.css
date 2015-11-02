@@ -82,7 +82,7 @@ button {
   -o-appearance: none;
   appearance: none;
   -webkit-font-smoothing: antialiased;
-  background-color: #477dca;
+  background-color: #888;
   border-radius: 3px;
   border: none;
   color: #fff;
@@ -102,7 +102,7 @@ button {
 button:hover, button:focus, input[type="button"]:hover, input[type="button"]:focus, input[type="reset"]:hover, input[type="reset"]:focus, input[type="submit"]:hover, input[type="submit"]:focus,
 button:hover,
 button:focus {
-  background-color: #2c5999;
+  background-color: #999;
   color: #fff;
 }
 /* line 27, ../sass/base/_buttons.scss */
@@ -295,7 +295,7 @@ p {
 
 /* line 26, ../sass/base/_typography.scss */
 a {
-  color: #477dca;
+  color: #666666;
   text-decoration: none;
   transition: color 0.1s linear;
 }
@@ -583,14 +583,14 @@ Modules - reusable parts of our design
     z-index: 6666;
   }
 }
-@font-face {
+/*@font-face {
   font-family: 'icomoon';
   src: url("../fonts/icomoon.eot?j18vpw");
   src: url("../fonts/icomoon.eot?#iefixj18vpw") format("embedded-opentype"), url("../fonts/icomoon.ttf?j18vpw") format("truetype"), url("../fonts/icomoon.woff?j18vpw") format("woff"), url("../fonts/icomoon.svg?j18vpw#icomoon") format("svg");
   font-weight: normal;
   font-style: normal;
 }
-/* line 12, ../sass/_partials/_fonts.scss */
+
 [class^="icon-"], [class*=" icon-"] {
   font-family: 'icomoon';
   speak: none;
@@ -600,18 +600,15 @@ Modules - reusable parts of our design
   text-transform: none;
   line-height: 1;
   font-size: 1.75em;
-  /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* line 28, ../sass/_partials/_fonts.scss */
 .icon-menu:before {
   content: "\e9bd";
   color: rgba(51, 51, 51, 0.7);
 }
 
-/* line 33, ../sass/_partials/_fonts.scss */
 .icon-circle-up:before {
   content: "\ea41";
   color: rgba(51, 51, 51, 0.7);
@@ -619,7 +616,7 @@ Modules - reusable parts of our design
   position: absolute;
   top: 25%;
   right: 25%;
-}
+}*/
 
 /* line 1, ../sass/_partials/_footer.scss */
 #footer-block {
@@ -791,9 +788,9 @@ Modules - reusable parts of our design
 /* line 33, ../sass/_partials/_copy-block.scss */
 .content-stripe h1 {
   font-family: "proxima-nova", sans-serif;
-  font-size: 2.1em;
+  font-size: 2.52em;
   text-transform: uppercase;
-  margin: 6.0em 0 3.0em;
+  margin: 4.0em 0 3.0em;
   font-weight: 300;
   color: #404040;
   position: relative;
@@ -949,6 +946,11 @@ Modules - reusable parts of our design
   margin-bottom: 0 !important;
 }
 
+#block_4{
+  padding-bottom: 10.0em;
+  border-bottom: none;  
+}
+
 /* line 158, ../sass/_partials/_copy-block.scss */
 .line-block {
   width: 33.333%;
@@ -1071,7 +1073,7 @@ body {
 .embed-container {
   position: relative;
   /*padding-bottom: 56.25%;*/
-/*  height: 0;*/
+  height: 1080px;
   overflow: hidden;
   max-width: 100%;
 }
@@ -1350,4 +1352,44 @@ body {
 
 #your-shopping-cart a{
   color:#666;
+}
+#collection-container{
+  padding: 1.0em 6.0em 3.0em;
+}
+
+.collection-all{
+  margin-left: 0!important;
+  padding: 4.0em 0 4.0em 3.0em;
+  /*margin-left:3%;*/
+}
+
+/*.collection-all img{
+  width:100%;
+  height:auto;
+  display: block;
+  max-width: 505px;
+  vertical-align: bottom;
+}*/
+
+.collection-all h1{
+  font-size: 2.0em;
+  margin-top: 1.0em;
+}
+
+.collection-block{
+  text-align: center;
+}
+
+.collection_block_1{
+  
+}
+
+.collection_block_2{
+ 
+}
+
+.collection-section {
+  width:33%;
+  float:left;
+
 }

@@ -63,30 +63,36 @@
     }
 
    function embedContainer() {
-      var placeholder_height = $(".embed-container img").height();
+      var placeholder_height = $(".embed-container-block").height();
       console.log(placeholder_height);
       $(".embed-container").css("height", placeholder_height);
     }
 
 //Lazy Load All Content Other Than Main Image
   function delayLoad() {
-    $('.delayed').fadeIn(3000);
+    $('.delayed').fadeIn(1000);
   }
 
 $(document).ready(function(){
-    embedContainer();
+    
     delayLoad();
     $('.fancybox').fancybox();
 
   //swap video placeholder with vimeo video on 
   $('.video-trigger').click(function(){
-    $('.vimeoplayer').parent().html('<iframe src="https://player.vimeo.com/video/'+$('.vimeoplayer').data('vimeoid')+'?title=0&autoplay=1" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>');
+    $('.vimeoplayer').parent().html('<iframe class="embed-container-block" src="https://player.vimeo.com/video/'+$('.vimeoplayer').data('vimeoid')+'?title=0&autoplay=1" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>');
   });
 });
 
 $(window).resize(function() {
     embedContainer();
 });
+
+$(window).load(function() {
+// executes when complete page is fully loaded, including all frames, objects and images
+  embedContainer();
+});
+
 
 function sticky_relocate() {
   var window_top = $(window).scrollTop();

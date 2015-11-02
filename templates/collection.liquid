@@ -5,16 +5,18 @@
     - http://docs.shopify.com/themes/liquid-variables/collection
 
 {% endcomment %}
-
+<div id="collection-container">
 {% paginate collection.products by 12 %}
 
 {% include 'breadcrumb' %}
+
+
 
 {% comment %}
   Use .grid--rev so that the collection tags appear below the products on mobile
 {% endcomment %}
 <div class="grid--rev">
-  <div class="grid__item large--three-quarters">
+  <div class="grid__item ">
 
     {% comment %}
       Different markup if a collection description exists
@@ -98,3 +100,5 @@
 </div>
 
 {% endpaginate %}
+
+</div><!-- End collection-div -->

@@ -9,7 +9,7 @@
 
 {% endcomment %}
 
-<div itemscope itemtype="http://schema.org/Product">
+<div itemscope itemtype="http://schema.org/Product" class="product-block">
 
   <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
   <meta itemprop="image" content="{{ product.featured_image.src | img_url: 'grande' }}">
@@ -36,8 +36,8 @@
 
           {% for image in product.images %}
             <li class="grid__item one-quarter">
-              <a href="{{ image.src | img_url: 'large' }}" class="product-single__thumbnail">
-                <img src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}">
+              <a href="{{ image.src | img_url: 'large' }}" class="product-single__thumbnail fancybox">
+                <img src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}" />
               </a>
             </li>
           {% endfor %}

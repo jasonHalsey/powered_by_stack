@@ -82,7 +82,7 @@ button {
   -o-appearance: none;
   appearance: none;
   -webkit-font-smoothing: antialiased;
-  background-color: #477dca;
+  background-color: #888;
   border-radius: 3px;
   border: none;
   color: #fff;
@@ -102,7 +102,7 @@ button {
 button:hover, button:focus, input[type="button"]:hover, input[type="button"]:focus, input[type="reset"]:hover, input[type="reset"]:focus, input[type="submit"]:hover, input[type="submit"]:focus,
 button:hover,
 button:focus {
-  background-color: #2c5999;
+  background-color: #999;
   color: #fff;
 }
 /* line 27, ../sass/base/_buttons.scss */
@@ -295,7 +295,7 @@ p {
 
 /* line 26, ../sass/base/_typography.scss */
 a {
-  color: #477dca;
+  color: #666666;
   text-decoration: none;
   transition: color 0.1s linear;
 }
@@ -324,24 +324,46 @@ picture {
   max-width: 100%;
 }
 
-@media screen and (max-width: 979px) {
-  /* line 16, ../sass/_partials/_variables.scss */
+@media screen and (min-width: 1001px) {
+  /* line 15, ../sass/_partials/_variables.scss */
   .desktop {
     display: block !important;
   }
 
-  /* line 19, ../sass/_partials/_variables.scss */
+  /* line 18, ../sass/_partials/_variables.scss */
   .mobile {
     display: none !important;
   }
 }
-@media screen and (max-width: 980px) {
-  /* line 24, ../sass/_partials/_variables.scss */
+@media screen and (max-width: 979px) {
+  /* line 23, ../sass/_partials/_variables.scss */
+  .desktop {
+    display: block !important;
+  }
+
+  /* line 26, ../sass/_partials/_variables.scss */
+  .mobile {
+    display: none !important;
+  }
+}
+@media screen and (max-width: 767px) {
+  /* line 31, ../sass/_partials/_variables.scss */
   .desktop {
     display: none !important;
   }
 
-  /* line 27, ../sass/_partials/_variables.scss */
+  /* line 34, ../sass/_partials/_variables.scss */
+  .mobile {
+    display: block !important;
+  }
+}
+@media screen and (max-width: 980px) {
+  /* line 39, ../sass/_partials/_variables.scss */
+  .desktop {
+    display: none !important;
+  }
+
+  /* line 42, ../sass/_partials/_variables.scss */
   .mobile {
     display: block !important;
   }
@@ -358,6 +380,9 @@ picture {
   z-index: 1000;
   overflow: hidden;
   text-align: center;
+}
+.non-delayed{
+  display: block!important;
 }
 @media screen and (max-width: 569px) {
   /* line 1, ../sass/_partials/_sticky_header.scss */
@@ -403,14 +428,19 @@ picture {
 }
 /* line 45, ../sass/_partials/_sticky_header.scss */
 .header img {
-  width: 20%;
+  width: 15%;
   max-width: 300px;
   height: auto;
   display: block;
-  margin: 0 auto;
-  -webkit-transition: all 0.3s;
+  float:left;
+  margin: 0 0 0 1.0em;
+  position:absolute;
+  top:50%;
+  -webkit-transform: translate(0%, -50%);
+  transform: translate(0%, -50%);
+/*  -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
-  transition: all 0.3s;
+  transition: all 0.3s;*/
 }
 @media screen and (max-width: 980px) {
   /* line 45, ../sass/_partials/_sticky_header.scss */
@@ -438,23 +468,34 @@ picture {
 
 /* line 74, ../sass/_partials/_sticky_header.scss */
 a.signup {
-  z-index: 9999;
-  position: absolute;
-  background: #fff;
+  position: relative;
   text-align: center;
   color: #000;
+  background-color: #fff;
   text-decoration: none;
-  right: 5%;
   line-height: 30px;
   text-transform: uppercase;
+  text-align: right;
+  font-size: 0.65em;
+  padding: 0em 1.0em;
+  margin: 0.4% 0 8px;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
-  font-size: 0.5em;
-  padding: 0em 1.0em;
-  margin-top: 2%;
 }
-/* line 91, ../sass/_partials/_sticky_header.scss */
+
+.mob-signup{
+  width:100%;
+  position:fixed;
+  display:block;
+  text-align: center;
+  text-transform: uppercase;
+  display: none;
+  background-color: rgba(0, 0, 0, 0.75);
+  color:#fff;
+  padding:1.0em 0;
+}
+/* line 87, ../sass/_partials/_sticky_header.scss */
 a.signup:hover {
   background-color: rgba(255, 255, 255, 0.5);
 }
@@ -464,6 +505,9 @@ a.signup:hover {
     margin-top: 2%;
     font-size: 0.4em;
   }
+  .mob-signup{
+    display:block;
+  }
 }
 @media screen and (max-width: 569px) {
   /* line 74, ../sass/_partials/_sticky_header.scss */
@@ -471,11 +515,10 @@ a.signup:hover {
     position: relative;
     width: 100%;
     display: block;
+    text-align: center;
     right: 0%;
-    -webkit-border-radius: 0px;
-    -moz-border-radius: 0px;
-    border-radius: 0px;
   }
+
 }
 
 /* -------------------------------- 
@@ -483,8 +526,79 @@ a.signup:hover {
 Modules - reusable parts of our design
 
 -------------------------------- */
+/* line 8, ../sass/_partials/_scroll_to_top.scss */
+.cd-container {
+  width: 100%;
+}
 
+/* line 11, ../sass/_partials/_scroll_to_top.scss */
+.cd-container::after {
+  /* clearfix */
+  content: '';
+  display: table;
+  clear: both;
+}
 
+/* line 17, ../sass/_partials/_scroll_to_top.scss */
+.cd-top {
+  display: block;
+  position: fixed;
+  bottom: 40px;
+  right: 10px;
+  z-index: 6666;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  /* image replacement properties */
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: opacity .3s 0s, visibility 0s .3s;
+  -moz-transition: opacity .3s 0s, visibility 0s .3s;
+  transition: opacity .3s 0s, visibility 0s .3s;
+}
+
+/* line 33, ../sass/_partials/_scroll_to_top.scss */
+.cd-top.cd-is-visible, .cd-top.cd-fade-out, .no-touch .cd-top:hover {
+  -webkit-transition: opacity .3s 0s, visibility 0s 0s;
+  -moz-transition: opacity .3s 0s, visibility 0s 0s;
+  transition: opacity .3s 0s, visibility 0s 0s;
+}
+
+/* line 38, ../sass/_partials/_scroll_to_top.scss */
+.cd-top.cd-is-visible {
+  /* the button becomes visible */
+  visibility: visible;
+  opacity: 1;
+}
+
+/* line 43, ../sass/_partials/_scroll_to_top.scss */
+.cd-top.cd-fade-out {
+  /* if the user keeps scrolling down, the button is out of focus and becomes less visible */
+  opacity: .5;
+}
+
+/* line 47, ../sass/_partials/_scroll_to_top.scss */
+.no-touch .cd-top:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 1;
+}
+
+@media only screen and (min-width: 768px) {
+  /* line 52, ../sass/_partials/_scroll_to_top.scss */
+  .cd-top {
+    right: 20px;
+    bottom: 20px;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  /* line 58, ../sass/_partials/_scroll_to_top.scss */
+  .cd-top {
+    height: 60px;
+    width: 60px;
+    right: 30px;
+    bottom: 30px;
+    z-index: 6666;
+  }
+}
 /* line 1, ../sass/_partials/_footer.scss */
 #footer-block {
   position: relative;
@@ -625,69 +739,85 @@ Modules - reusable parts of our design
 
 /* line 8, ../sass/_partials/_copy-block.scss */
 .content-stripe {
-  width: 100%;
+  width: 90%;
   height: auto;
+  display: block;
+  margin: 0 auto;
   min-height: 600px;
   overflow: hidden;
   position: relative;
-  border-bottom: 10px solid #333;
+  border-bottom: 1px solid #878787;
+  text-align: center;
+  padding-bottom: 12.0em;
 }
-/* line 16, ../sass/_partials/_copy-block.scss */
+/* line 19, ../sass/_partials/_copy-block.scss */
+.content-stripe:last-child {
+  padding-bottom: 0;
+}
+/* line 22, ../sass/_partials/_copy-block.scss */
 .content-stripe p {
   font-family: "adelle-sans", sans-serif;
   line-height: 2.2em;
-  font-weight: bold;
+  font-weight: 300;
+  width: 100%;
+  max-width: 800px;
+  display: block;
+  color: #878787;
+  margin: auto;
+  text-transform: uppercase;
 }
-/* line 21, ../sass/_partials/_copy-block.scss */
+/* line 33, ../sass/_partials/_copy-block.scss */
 .content-stripe h1 {
   font-family: "proxima-nova", sans-serif;
-  font-size: 2.0em;
+  font-size: 2.52em;
   text-transform: uppercase;
-  margin: 0 0 0.3em;
-  font-weight: bold;
-  color: #4a4a4a;
+  margin: 4.0em 0 3.0em;
+  font-weight: 300;
+  color: #404040;
   position: relative;
 }
-/* line 29, ../sass/_partials/_copy-block.scss */
-.content-stripe h1:after {
-  content: url(https://cdn.shopify.com/s/files/1/0941/6882/files/sm_STACKED_Icon.svg?1849780542212893891);
-  display: inline-block;
-  width: 22px;
-  height: 25px;
-  position: absolute;
-  top: 0;
+/* line 41, ../sass/_partials/_copy-block.scss */
+.content-stripe h1 span {
+  display: block;
+  font-weight: 600;
+  font-size: 1.0em;
+}
+/* line 47, ../sass/_partials/_copy-block.scss */
+.content-stripe img {
+  display: block;
+  margin: 0 0 6.0em 0;
 }
 
-/* line 42, ../sass/_partials/_copy-block.scss */
+/* line 55, ../sass/_partials/_copy-block.scss */
 .content-block_left {
   display: block;
   width: 50%;
   float: left;
-  color: #373737;
+  color: #878787;
   padding: 15% 1.5em 1.5em 10.0em;
 }
 @media screen and (max-width: 980px) {
-  /* line 42, ../sass/_partials/_copy-block.scss */
+  /* line 55, ../sass/_partials/_copy-block.scss */
   .content-block_left {
     width: 100%;
     padding: 5% 1.5em 1.5em 3.0em;
   }
 }
 @media screen and (max-width: 468px) {
-  /* line 42, ../sass/_partials/_copy-block.scss */
+  /* line 55, ../sass/_partials/_copy-block.scss */
   .content-block_left {
     padding: 5% 1.5em 1.5em 1.5em;
   }
 }
 
-/* line 58, ../sass/_partials/_copy-block.scss */
+/* line 71, ../sass/_partials/_copy-block.scss */
 .img-block_half_right {
   width: 50%;
   height: auto;
   float: right;
 }
 @media screen and (max-width: 980px) {
-  /* line 58, ../sass/_partials/_copy-block.scss */
+  /* line 71, ../sass/_partials/_copy-block.scss */
   .img-block_half_right {
     width: 100%;
     height: auto;
@@ -697,14 +827,14 @@ Modules - reusable parts of our design
   }
 }
 
-/* line 70, ../sass/_partials/_copy-block.scss */
+/* line 83, ../sass/_partials/_copy-block.scss */
 .img-block_half_left {
   width: 50%;
   height: auto;
   float: left;
 }
 @media screen and (max-width: 980px) {
-  /* line 70, ../sass/_partials/_copy-block.scss */
+  /* line 83, ../sass/_partials/_copy-block.scss */
   .img-block_half_left {
     width: 100%;
     height: auto;
@@ -713,29 +843,29 @@ Modules - reusable parts of our design
   }
 }
 
-/* line 84, ../sass/_partials/_copy-block.scss */
+/* line 97, ../sass/_partials/_copy-block.scss */
 .content-block_right {
   display: block;
   width: 50%;
   float: right;
-  color: #373737;
+  color: #878787;
   padding: 15% 9.0em 1.5em 1.5em;
 }
 @media screen and (max-width: 980px) {
-  /* line 84, ../sass/_partials/_copy-block.scss */
+  /* line 97, ../sass/_partials/_copy-block.scss */
   .content-block_right {
     width: 100%;
     padding: 5% 1.5em 1.5em 3.0em;
   }
 }
 @media screen and (max-width: 468px) {
-  /* line 84, ../sass/_partials/_copy-block.scss */
+  /* line 97, ../sass/_partials/_copy-block.scss */
   .content-block_right {
     padding: 5% 1.5em 1.5em 1.5em;
   }
 }
 
-/* line 98, ../sass/_partials/_copy-block.scss */
+/* line 111, ../sass/_partials/_copy-block.scss */
 .content-block_right_sm {
   display: block;
   float: right;
@@ -744,13 +874,13 @@ Modules - reusable parts of our design
   width: 30%;
 }
 
-/* line 106, ../sass/_partials/_copy-block.scss */
+/* line 119, ../sass/_partials/_copy-block.scss */
 .img-block_right {
   text-align: right;
   float: right;
   width: 50%;
 }
-/* line 110, ../sass/_partials/_copy-block.scss */
+/* line 123, ../sass/_partials/_copy-block.scss */
 .img-block_right img {
   height: auto;
   width: 100%;
@@ -759,19 +889,19 @@ Modules - reusable parts of our design
   float: right;
 }
 @media screen and (max-width: 980px) {
-  /* line 106, ../sass/_partials/_copy-block.scss */
+  /* line 119, ../sass/_partials/_copy-block.scss */
   .img-block_right {
     width: 100%;
   }
 }
 
-/* line 121, ../sass/_partials/_copy-block.scss */
+/* line 134, ../sass/_partials/_copy-block.scss */
 .img-block_left {
   text-align: left;
   float: left;
   width: 50%;
 }
-/* line 125, ../sass/_partials/_copy-block.scss */
+/* line 138, ../sass/_partials/_copy-block.scss */
 .img-block_left img {
   height: auto;
   width: 100%;
@@ -780,41 +910,41 @@ Modules - reusable parts of our design
   float: left;
 }
 @media screen and (max-width: 980px) {
-  /* line 121, ../sass/_partials/_copy-block.scss */
+  /* line 134, ../sass/_partials/_copy-block.scss */
   .img-block_left {
     width: 100%;
   }
 }
 
-/* line 139, ../sass/_partials/_copy-block.scss */
-#block_4 .img-block_left img {
-  height: auto;
-  width: 100%;
-  display: block;
-  max-width: 500px;
-  float: left;
-  padding-left: 6.0em;
+/* line 150, ../sass/_partials/_copy-block.scss */
+#block_5 {
+  padding-bottom: 0 !important;
+  padding-top: 6.0em;
+  border-bottom: none;
 }
-@media screen and (max-width: 980px) {
-  /* line 139, ../sass/_partials/_copy-block.scss */
-  #block_4 .img-block_left img {
-    padding-left: 1.0em;
-  }
+/* line 153, ../sass/_partials/_copy-block.scss */
+#block_5 img {
+  margin-bottom: 0 !important;
 }
 
-/* line 153, ../sass/_partials/_copy-block.scss */
+#block_4{
+  padding-bottom: 10.0em;
+  border-bottom: none;  
+}
+
+/* line 158, ../sass/_partials/_copy-block.scss */
 .line-block {
   width: 33.333%;
   float: left;
   display: block;
 }
-/* line 157, ../sass/_partials/_copy-block.scss */
+/* line 162, ../sass/_partials/_copy-block.scss */
 .line-block img {
   display: block;
   width: 100%;
   height: auto;
 }
-/* line 162, ../sass/_partials/_copy-block.scss */
+/* line 167, ../sass/_partials/_copy-block.scss */
 .line-block p.line-block-descript {
   display: block;
   width: 100%;
@@ -823,14 +953,14 @@ Modules - reusable parts of our design
   padding: 1.5em;
 }
 @media screen and (max-width: 979px) {
-  /* line 153, ../sass/_partials/_copy-block.scss */
+  /* line 158, ../sass/_partials/_copy-block.scss */
   .line-block {
     width: 100%;
     border-bottom: 10px solid #333;
   }
 }
 
-/* line 176, ../sass/_partials/_copy-block.scss */
+/* line 181, ../sass/_partials/_copy-block.scss */
 #block_horz {
   border-top: 15px solid #666;
   border-bottom: 15px solid #444;
@@ -845,19 +975,19 @@ Modules - reusable parts of our design
   display: table;
 }
 
-/* line 185, ../sass/_partials/_copy-block.scss */
+/* line 190, ../sass/_partials/_copy-block.scss */
 .horz_img {
   width: 33.3%;
   float: left;
 }
-/* line 188, ../sass/_partials/_copy-block.scss */
+/* line 193, ../sass/_partials/_copy-block.scss */
 .horz_img img {
   width: 100%;
   height: auto;
   display: block;
 }
 
-/* line 194, ../sass/_partials/_copy-block.scss */
+/* line 199, ../sass/_partials/_copy-block.scss */
 #mailchimp {
   width: 100%;
   display: block;
@@ -869,19 +999,23 @@ Modules - reusable parts of our design
   display: table;
 }
 
-/* line 200, ../sass/_partials/_copy-block.scss */
+/* line 205, ../sass/_partials/_copy-block.scss */
 #mc_embed_signup {
   display: block;
   width: 50%;
   margin-left: auto;
   margin-right: auto;
 }
-/* line 205, ../sass/_partials/_copy-block.scss */
+/* line 210, ../sass/_partials/_copy-block.scss */
 #mc_embed_signup h2 {
   text-align: center;
+  font-weight: 300 !important;
+  text-transform: uppercase;
+  color: #404040;
+  font-family: "proxima-nova", sans-serif;
 }
 @media screen and (max-width: 979px) {
-  /* line 200, ../sass/_partials/_copy-block.scss */
+  /* line 205, ../sass/_partials/_copy-block.scss */
   #mc_embed_signup {
     width: 80%;
   }
@@ -896,8 +1030,8 @@ body {
 /* line 5, ../sass/_partials/_structure.scss */
 #big-wrap {
   width: 100%;
-  position: absolute;
-  z-index: 20;
+  /*position: absolute;*/
+  z-index: 6;
   background-color: #fff;
 }
 
@@ -919,18 +1053,17 @@ body {
 /* line 1, ../sass/_partials/_embed-video.scss */
 .embed-container {
   position: relative;
-  padding-bottom: 56.25%;
-  height: 0;
+  /*padding-bottom: 56.25%;*/
+  height: 1080px;
   overflow: hidden;
   max-width: 100%;
 }
 /* line 7, ../sass/_partials/_embed-video.scss */
 .embed-container img {
-  position: fixed;
-  display:block;
+  position: fixed; 
   top: 0;
   left: 0;
-  z-index:12;
+  display: block;
 }
 
 /* line 13, ../sass/_partials/_embed-video.scss */
@@ -949,15 +1082,6 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  
-}
-
-.embed-container_b{
-  position: absolute;
-  top:0;
-  left:0;
-  z-index:10;
-  width:100%;
 }
 
 /* line 29, ../sass/_partials/_embed-video.scss */
@@ -982,7 +1106,7 @@ body {
   text-decoration: none;
   width: 200px;
   height: 60px;
-  z-index: 14;
+  z-index: 5;
   left: 50%;
   line-height: 60px;
   margin-left: -100px;
@@ -1000,6 +1124,271 @@ body {
 /* line 63, ../sass/_partials/_embed-video.scss */
 .video-trigger:hover {
   background: #363636;
-  color: #FFF200;
+  color: #000;
   cursor: pointer;
+}
+
+/* line 20, ../sass/_partials/_modal.scss */
+.modal label {
+  cursor: pointer;
+  margin-bottom: 0;
+}
+/* line 25, ../sass/_partials/_modal.scss */
+.modal label img {
+  border-radius: 150px;
+  display: block;
+  max-width: 300px;
+}
+/* line 31, ../sass/_partials/_modal.scss */
+.modal .modal-state {
+  display: none;
+}
+/* line 35, ../sass/_partials/_modal.scss */
+.modal .modal-trigger {
+  padding: 0.8em 1em;
+}
+/* line 39, ../sass/_partials/_modal.scss */
+.modal .modal-fade-screen {
+  -webkit-transition: opacity 0.25s ease;
+  -moz-transition: opacity 0.25s ease;
+  transition: opacity 0.25s ease;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.85);
+  opacity: 0;
+  padding-top: 0.6em;
+  text-align: left;
+  visibility: hidden;
+  z-index: 99999999999;
+}
+@media screen and (min-width: 53.75em) {
+  /* line 39, ../sass/_partials/_modal.scss */
+  .modal .modal-fade-screen {
+    padding-top: 10em;
+  }
+}
+/* line 53, ../sass/_partials/_modal.scss */
+.modal .modal-fade-screen .modal-bg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  cursor: pointer;
+}
+/* line 59, ../sass/_partials/_modal.scss */
+.modal .modal-close {
+  position: absolute;
+  top: 1.5em;
+  right: 1.5em;
+  height: 1.5em;
+  width: 1.5em;
+  background: #fff;
+  cursor: pointer;
+}
+/* line 65, ../sass/_partials/_modal.scss */
+.modal .modal-close:after, .modal .modal-close:before {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  bottom: 0;
+  left: 50%;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+  height: 1.5em;
+  width: 0.15em;
+  background: #ddd;
+  content: '';
+  display: block;
+  margin: -3px 0 0 -1px;
+}
+/* line 76, ../sass/_partials/_modal.scss */
+.modal .modal-close:hover:after, .modal .modal-close:hover:before {
+  background: #c4c4c4;
+}
+/* line 81, ../sass/_partials/_modal.scss */
+.modal .modal-close:before {
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+/* line 86, ../sass/_partials/_modal.scss */
+.modal .modal-inner {
+  -webkit-transition: opacity 0.25s ease;
+  -moz-transition: opacity 0.25s ease;
+  transition: opacity 0.25s ease;
+  background: #fff;
+  border-radius: 3px;
+  margin-top: 0;
+  margin: auto;
+  max-height: 95%;
+  overflow: auto;
+  padding: 1.5em;
+  position: relative;
+  width: 95%;
+}
+@media screen and (min-width: 40em) {
+  /* line 86, ../sass/_partials/_modal.scss */
+  .modal .modal-inner {
+    max-height: 70%;
+    padding: 3em;
+    width: 60%;
+  }
+}
+@media screen and (min-width: 53.75em) {
+  /* line 86, ../sass/_partials/_modal.scss */
+  .modal .modal-inner {
+    width: 50%;
+  }
+}
+/* line 108, ../sass/_partials/_modal.scss */
+.modal .modal-inner h1 {
+  color: #333;
+  margin-bottom: 0 0 0.6em 0;
+  text-align: left;
+  text-transform: capitalize;
+}
+/* line 115, ../sass/_partials/_modal.scss */
+.modal .modal-inner p {
+  color: #333;
+  line-height: 1.5;
+}
+/* line 120, ../sass/_partials/_modal.scss */
+.modal .modal-inner .modal-intro {
+  margin-bottom: 1em;
+}
+/* line 124, ../sass/_partials/_modal.scss */
+.modal .modal-inner .modal-content {
+  color: #333;
+}
+@media screen and (min-width: 40em) {
+  /* line 124, ../sass/_partials/_modal.scss */
+  .modal .modal-inner .modal-content {
+    -webkit-columns: 2 8em;
+    -moz-columns: 2 8em;
+    columns: 2 8em;
+  }
+}
+
+#modal-wrapper form#form{
+  bottom: 75px!important;
+}
+
+
+#sticky,
+#sticky-phantom {
+    background: #rgba(0,0,0,0.75);
+    color: #ffffff;
+    font-size: 30px;
+    text-align: center;
+    width: 100vw;
+
+}
+
+#sticky-phantom {
+    display: none;
+}
+
+#sticky.stick {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+.cart-container{
+
+
+}
+#cart-block{
+  float:right;
+}
+#cart-block [class^="icon-"], #cart-block [class*=" icon-"] {
+  font-size: 1.5em;
+}
+#cart-block a{
+  color:#fff;
+  font-size: 0.5em
+}
+.right-nav{
+  position: relative;
+  float: right;
+  display: block;
+  padding-right: 1em;
+}
+
+.right-nav::after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+
+.product-block{
+  padding: 0.5em 4.0em;
+}
+
+.cart-wrapper{
+  padding: 1.0em 6.0em 0;
+}
+
+#your-shopping-cart a{
+  color:#666;
+}
+#collection-container{
+  padding: 1.0em 6.0em 3.0em;
+}
+
+.collection-all{
+  /*margin-left: 0!important;*/
+  width:100%;
+  max-width: 1800px;
+  margin: 0 auto;
+  padding: 4.0em 0 4.0em 3.0em;
+  /*margin-left:3%;*/
+}
+
+.collection-all img{
+  width:60%;
+  height:auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.collection-all h1{
+  font-size: 2.0em;
+  margin-top: 1.0em;
+}
+
+.collection-block{
+  text-align: center;
+}
+
+.collection_block_1{
+  
+}
+
+.collection_block_2{
+ 
+}
+
+.collection-section {
+  width:33%;
+  float:left;
+}
+
+@media screen and (max-width: 767px) {
+  .collection-section {
+    width:100%;
+    float:left;
+  }
+  .collection-all{
+    padding: 4.0em 1.0em 0;
+  }
 }

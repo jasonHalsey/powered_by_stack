@@ -473,11 +473,12 @@ a.signup {
   color: #000;
   background-color: #fff;
   text-decoration: none;
-  line-height: 30px;
+/*  line-height: 30px;*/
+  display: block;
   text-transform: uppercase;
   text-align: right;
   font-size: 0.65em;
-  padding: 0em 1.0em;
+  padding: 0.25em 1.0em 0em;
   margin: 0.4% 0 8px;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -1362,7 +1363,7 @@ body {
 }
 
 .collection-all h1{
-  font-size: 2.0em;
+  font-size: 1.5em;
   margin-top: 1.0em;
 }
 
